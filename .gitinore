@@ -1,14 +1,17 @@
 # Archivos compilados de Java
-*. class
-*. jar
+*.class
+*.jar
+
 # Carpetas de salida
-out /
-bin /
-target /
+out/
+bin/
+target/
+
 # Archivos de IDE
-. idea /
-. vscode /
-*. iml
+.idea/
+.vscode/
+*.iml
+
 # Archivos del sistema
-. DS_Store
-Thumbs . db
+.DS_Store
+Thumbs.db
