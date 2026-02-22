@@ -5,21 +5,28 @@ import java.util.ArrayList;
 
 public class GestorTareas {
 
+    // Lista dinámica que almacena todas las tareas
     private ArrayList<Tarea> tareas;
+
+    // Controlador para generar IDs automáticos y secuenciales
     private int proximoId;
 
+    // Constructor: inicializa la lista y el contador de IDs
     public GestorTareas() {
         tareas = new ArrayList<>();
         proximoId = 1;
     }
 
+    // Crea una nueva tarea y la agrega a la lista
     public void agregar(String titulo, String descripcion) {
         Tarea nueva = new Tarea(proximoId, titulo, descripcion);
         tareas.add(nueva);
+
         System.out.println("Tarea agregada con ID: " + proximoId);
-        proximoId++;
+        proximoId++; 
     }
 
+    // Muestra todas las tareas registradas
     public void listar() {
         if (tareas.isEmpty()) {
             System.out.println("No hay tareas");
@@ -32,6 +39,7 @@ public class GestorTareas {
         }
     }
 
+    // Filtra y muestra solo las tareas pendientes
     public void listarPendientes() {
         System.out.println("=== TAREAS PENDIENTES ===");
         boolean hay = false;
@@ -48,6 +56,7 @@ public class GestorTareas {
         }
     }
 
+    // Filtra y muestra solo las tareas completadas
     public void listarCompletadas() {
         System.out.println("=== TAREAS COMPLETADAS ===");
         boolean hay = false;
@@ -64,6 +73,7 @@ public class GestorTareas {
         }
     }
 
+    // Busca una tarea por ID (retorna null si no existe)
     public Tarea buscar(int id) {
         for (Tarea t : tareas) {
             if (t.getId() == id) {
@@ -73,8 +83,10 @@ public class GestorTareas {
         return null;
     }
 
+    // Marca una tarea como completada
     public void completar(int id) {
         Tarea t = buscar(id);
+
         if (t != null) {
             t.completar();
         } else {
@@ -82,8 +94,10 @@ public class GestorTareas {
         }
     }
 
+    // Elimina una tarea existente por ID
     public void eliminar(int id) {
         Tarea t = buscar(id);
+
         if (t != null) {
             tareas.remove(t);
             System.out.println("Tarea eliminada");
@@ -92,12 +106,15 @@ public class GestorTareas {
         }
     }
 
+    // Retorna el total de tareas registradas
     public int totalTareas() {
         return tareas.size();
     }
 
+    // Cuenta cuántas tareas siguen pendientes
     public int totalPendientes() {
         int c = 0;
+
         for (Tarea t : tareas) {
             if (!t.estaCompletada()) {
                 c++;
@@ -106,8 +123,10 @@ public class GestorTareas {
         return c;
     }
 
+    // Cuenta cuántas tareas están completadas
     public int totalCompletadas() {
         int c = 0;
+
         for (Tarea t : tareas) {
             if (t.estaCompletada()) {
                 c++;

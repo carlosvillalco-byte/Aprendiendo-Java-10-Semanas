@@ -3,12 +3,15 @@ import java.util.Scanner;
 
 public class Main {
 
+    // Instancia del gestor que maneja todas las operaciones
     static GestorTareas gestor = new GestorTareas();
+    // Scanner para leer datos desde teclado
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         int opcion;
 
+        // Bucle principal del menú
         do {
             mostrarMenu();
             opcion = scanner.nextInt();
@@ -29,6 +32,7 @@ public class Main {
         } while (opcion != 8);
     }
 
+    // Muestra el menú principal
     static void mostrarMenu() {
         System.out.println("\n=== GESTOR DE TAREAS ===");
         System.out.println("1. Agregar tarea");
@@ -39,9 +43,10 @@ public class Main {
         System.out.println("6. Eliminar tarea");
         System.out.println("7. Estadisticas");
         System.out.println("8. Salir");
-        System.out.print("Seleccione una opción: ");
+        System.out.print("Opcion: "); 
     }
 
+    // Solicita datos y agrega una nueva tarea
     static void agregar() {
         System.out.print("Titulo: ");
         String titulo = scanner.nextLine();
@@ -50,18 +55,21 @@ public class Main {
         gestor.agregar(titulo, descripcion);
     }
 
+    // Marca una tarea como completada
     static void completar() {
         System.out.print("ID a completar: ");
         int id = scanner.nextInt();
         gestor.completar(id);
     }
 
+    // Elimina una tarea por ID
     static void eliminar() {
         System.out.print("ID a eliminar: ");
         int id = scanner.nextInt();
         gestor.eliminar(id);
     }
 
+    // Muestra estadísticas generales
     static void estadisticas() {
         int total = gestor.totalTareas();
         int pendientes = gestor.totalPendientes();

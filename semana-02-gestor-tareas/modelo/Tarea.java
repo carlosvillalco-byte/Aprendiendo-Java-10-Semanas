@@ -2,19 +2,21 @@ package modelo;
 
 public class Tarea {
 
+    // Atributos privados (encapsulamiento)
     private int id;
     private String titulo;
     private String descripcion;
-    private String estado;
+    private String estado; 
 
+    // Constructor: el estado inicia siempre como PENDIENTE
     public Tarea(int id, String titulo, String descripcion) {
         this.id = id;
-        setTitulo(titulo);
+        setTitulo(titulo);           
         setDescripcion(descripcion);
         this.estado = "PENDIENTE";
     }
 
-    // Getters
+    // ===== GETTERS =====
     public int getId() {
         return id;
     }
@@ -31,7 +33,9 @@ public class Tarea {
         return estado;
     }
 
-    // Setters con validación
+    // ===== SETTERS CON VALIDACIÓN =====
+
+    // Valida que el título no sea nulo ni vacío
     public void setTitulo(String titulo) {
         if (titulo != null && !titulo.trim().isEmpty()) {
             this.titulo = titulo;
@@ -40,6 +44,7 @@ public class Tarea {
         }
     }
 
+    // Valida que la descripción no sea nula ni vacía
     public void setDescripcion(String descripcion) {
         if (descripcion != null && !descripcion.trim().isEmpty()) {
             this.descripcion = descripcion;
@@ -48,7 +53,9 @@ public class Tarea {
         }
     }
 
-    // Métodos de negocio
+    // ===== MÉTODOS DE NEGOCIO =====
+
+    // Marca la tarea como completada si aún no lo está
     public void completar() {
         if (estado.equals("COMPLETADA")) {
             System.out.println("La tarea ya esta completada");
@@ -58,10 +65,12 @@ public class Tarea {
         }
     }
 
+    // Retorna true si la tarea está completada
     public boolean estaCompletada() {
         return estado.equals("COMPLETADA");
     }
 
+    // Muestra la información formateada de la tarea
     public void mostrarInfo() {
         System.out.println("ID: " + id + " | " + estado);
         System.out.println("Titulo: " + titulo);
