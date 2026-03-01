@@ -8,7 +8,7 @@ Repositorio del curso Java.
 |--------|------|----------|
 | 1 | Java Esencial + Git | semana-01-calificaciones/ |
 | 2 | POO Fundamentos | semana-02-gestor-tareas/ |
-| ... | ... | ... |
+| 3 | POO 2da. Parte | semana-03-vehiculos-poo |
 
 ## Autor
 [Carlos Ailton Villca ALcocer]
