@@ -2,19 +2,21 @@ package modelo;
 
 public class Camion extends Vehiculo 
 {
-    private double capacidadToneladas;
 
-    public Camion(String marca, String modelo, int anio, double ton) {
+    private double cargaToneladas;
+
+    public Camion(String marca, String modelo, int anio, double cargaToneladas) {
         super(marca, modelo, anio);
-        this.capacidadToneladas = ton;
+        this.cargaToneladas = cargaToneladas;
     }
 
     @Override
     public void acelerar() {
-        System.out.println(marca + " (camion, " + capacidadToneladas + "t) acelera despacio.");
+        System.out.println("Camion acelera");
     }
 
-    public double getCapacidadToneladas() {
-        return capacidadToneladas;
+    @Override
+    public String toString() {
+        return "Camion: " + super.toString() + " - " + cargaToneladas + " toneladas";
     }
 }

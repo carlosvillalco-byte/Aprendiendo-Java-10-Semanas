@@ -1,90 +1,108 @@
 package servicio;
 
-import modelo.*;
 import java.util.ArrayList;
+import java.util.Scanner;
+import modelo.*;
 
-public class GestorVehiculos 
-{
-    private ArrayList<Vehiculo> vehiculos;
+public class GestorVehiculos {
+
+    private ArrayList<Vehiculo> flota;
+    private Scanner sc;
 
     public GestorVehiculos() {
-        vehiculos = new ArrayList<>();
+        flota = new ArrayList<>();
+        sc = new Scanner(System.in);
+
+        // Vehiculos iniciales
+        flota.add(new Auto("Toyota", "Corolla", 2024, 4));
+        flota.add(new Moto("Honda", "CB500", 2023, false));
+        flota.add(new Camion("Volvo", "FH16", 2022, 24.0));
+        flota.add(new AutoElectrico("Tesla", "Model 3", 2024, 4, 80));
+        flota.add(new MotoElectrica("NIU", "NQi", 2023, 60));
     }
 
-    public void agregar(Vehiculo v) {
-        vehiculos.add(v);
-        System.out.println("Agregado: " + v.getInfo());
+    // =========================
+    // MENU PRINCIPAL
+    // =========================
+    public void menu() {
+        int opcion;
+
+        do {
+            System.out.println("\n=== GESTION DE VEHICULOS ===");
+            System.out.println("1. Listar todos");
+            System.out.println("2. Filtrar por tipo");
+            System.out.println("3. Ver electricos y baterias");
+            System.out.println("4. Cargar baterias bajas");
+            System.out.println("5. Demostrar polimorfismo");
+            System.out.println("6. Estadisticas");
+            System.out.println("7. Salir");
+            System.out.print("Seleccione una opcion: ");
+
+            opcion = sc.nextInt();
+
+            switch (opcion) {
+                case 1 -> listarTodos();
+                case 2 -> filtrarPorTipo();
+                case 3 -> mostrarElectricos();
+                case 4 -> cargarBateriasBajas();
+                case 5 -> demostrarPolimorfismo();
+                case 6 -> estadisticas();
+                case 7 -> System.out.println("Saliendo del sistema...");
+                default -> System.out.println("Opcion invalida");
+            }
+
+        } while (opcion != 7);
     }
 
-    public void listarTodos() {
-        System.out.println("\n=== Toda la flota ===");
-        if (vehiculos.isEmpty()) {
-            System.out.println("Sin vehiculos registrados.");
-            return;
+    // =========================
+    // METODOS DEL SISTEMA
+    // =========================
+
+    private void listarTodos() {
+        System.out.println("\n--- LISTA DE VEHICULOS ---");
+        for (Vehiculo v : flota) {
+            System.out.println(v);
         }
-        for (Vehiculo v : vehiculos) {
-            System.out.println(v.getInfo());
-        }
     }
 
-    public void listarPorTipo(String tipo) {
-        System.out.println("\n=== Tipo: " + tipo + " ===");
-        for (Vehiculo v : vehiculos) {
-            boolean mostrar = false;
-            if (tipo.equalsIgnoreCase("auto") && v instanceof Auto && !(v instanceof AutoElectrico)) mostrar = true;
-            if (tipo.equalsIgnoreCase("moto") && v instanceof Moto && !(v instanceof MotoElectrica)) mostrar = true;
-            if (tipo.equalsIgnoreCase("camion") && v instanceof Camion) mostrar = true;
-            if (tipo.equalsIgnoreCase("electrico") && v instanceof Electrico) mostrar = true;
-            if (mostrar) System.out.println(v.getInfo());
-        }
-    }
+    private void filtrarPorTipo() {
+        System.out.print("Ingrese tipo (Auto/Moto/Camion): ");
+        String tipo = sc.next();
 
-    public void listarElectricos() {
-        System.out.println("\n=== Vehiculos electricos ===");
-        boolean hay = false;
-        for (Vehiculo v : vehiculos) {
-            if (v instanceof Electrico) {
-                Electrico e = (Electrico) v;
-                System.out.println(v.getInfo() + " | Bateria: " + e.getNivelBateria() + "%");
-                hay = true;
+        for (Vehiculo v : flota) {
+            if (v.getClass().getSimpleName().equalsIgnoreCase(tipo)) {
+                System.out.println(v);
             }
         }
-        if (!hay) System.out.println("Sin vehiculos electricos.");
     }
 
-    public void cargarElectricosNecesarios() {
-        System.out.println("\n=== Verificando baterias ===");
-        for (Vehiculo v : vehiculos) {
-            if (v instanceof Electrico) {
-                Electrico e = (Electrico) v;
-                if (e.necesitaCarga()) {
-                    System.out.print(v.getInfo() + " -> ");
-                    e.cargarBateria();
-                }
+    private void mostrarElectricos() {
+        System.out.println("\n--- VEHICULOS ELECTRICOS ---");
+        for (Vehiculo v : flota) {
+            if (v instanceof Electrico e) {
+                System.out.println(v + " - Bateria: " + e.getNivelBateria() + "%");
             }
         }
     }
 
-    public void demostrarPolimorfismo() {
-        System.out.println("\n=== acelerar() en toda la flota ===");
-        for (Vehiculo v : vehiculos) {
+    private void cargarBateriasBajas() {
+        System.out.println("\n--- CARGANDO BATERIAS ---");
+        for (Vehiculo v : flota) {
+            if (v instanceof Electrico e && e.necesitaCarga()) {
+                e.cargarBateria();
+                System.out.println(v + " fue cargado");
+            }
+        }
+    }
+
+    private void demostrarPolimorfismo() {
+        System.out.println("\n== DEMOSTRACION DE POLIMORFISMO ==");
+        for (Vehiculo v : flota) {
             v.acelerar();
         }
     }
 
-    public void mostrarEstadisticas() {
-        int total = vehiculos.size();
-        int electricos = 0;
-        int necesitanCarga = 0;
-        for (Vehiculo v : vehiculos) {
-            if (v instanceof Electrico) {
-                electricos++;
-                if (((Electrico) v).necesitaCarga()) necesitanCarga++;
-            }
-        }
-        System.out.println("\n=== Estadisticas ===");
-        System.out.println("Total vehiculos: " + total);
-        System.out.println("Electricos: " + electricos);
-        System.out.println("Necesitan carga: " + necesitanCarga);
+    private void estadisticas() {
+        System.out.println("\nTotal de vehiculos: " + flota.size());
     }
 }

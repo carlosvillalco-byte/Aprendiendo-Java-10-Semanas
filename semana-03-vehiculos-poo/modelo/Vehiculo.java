@@ -1,7 +1,8 @@
 package modelo;
 
-public abstract class Vehiculo
- {
+public abstract class Vehiculo 
+{
+
     protected String marca;
     protected String modelo;
     protected int anio;
@@ -14,7 +15,9 @@ public abstract class Vehiculo
 
     public abstract void acelerar();
 
-    public String getInfo() {
+    @Override
+    public String toString() {
         return marca + " " + modelo + " (" + anio + ")";
     }
+
 }

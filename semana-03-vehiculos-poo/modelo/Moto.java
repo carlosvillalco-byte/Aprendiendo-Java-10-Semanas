@@ -2,19 +2,21 @@ package modelo;
 
 public class Moto extends Vehiculo
  {
+
     private boolean tieneSidecar;
 
-    public Moto(String marca, String modelo, int anio, boolean sidecar) {
+    public Moto(String marca, String modelo, int anio, boolean tieneSidecar) {
         super(marca, modelo, anio);
-        this.tieneSidecar = sidecar;
+        this.tieneSidecar = tieneSidecar;
     }
 
     @Override
     public void acelerar() {
-        System.out.println(marca + " (moto) acelera ligero.");
+        System.out.println("Moto acelera");
     }
 
-    public boolean isTieneSidecar() {
-        return tieneSidecar;
+    @Override
+    public String toString() {
+        return "Moto: " + super.toString();
     }
 }

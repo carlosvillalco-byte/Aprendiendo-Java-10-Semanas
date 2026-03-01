@@ -8,15 +8,17 @@ polimorfismo e interfaces en Java, aplicados en un caso práctico.
 
 ## Diagrama de clases
 
-[Vehiculo] (abstract)
-   |
+       [Vehiculo] (abstract)
+           |
    +-------+--------+
    |       |        |
  [Auto]  [Moto]  [Camion]
    |        |
 [AutoElectrico] [MotoElectrica]
-   |
-<<Electrico>> (interface)
+   |                 |
+   +--------+--------+
+            |
+      <<Electrico>> (interface)
 
 ---
 

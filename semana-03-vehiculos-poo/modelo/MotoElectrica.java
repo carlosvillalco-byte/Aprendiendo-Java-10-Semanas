@@ -1,17 +1,23 @@
 package modelo;
 
-public class MotoElectrica extends Moto implements Electrico {
+public class MotoElectrica extends Moto implements Electrico 
+{
+
     private int nivelBateria;
 
-    public MotoElectrica(String marca, String modelo, int anio, int bateria) {
+    public MotoElectrica(String marca, String modelo, int anio, int nivelBateria) {
         super(marca, modelo, anio, false);
-        this.nivelBateria = bateria;
+        this.nivelBateria = nivelBateria;
+    }
+
+    @Override
+    public void acelerar() {
+        System.out.println("Moto electrica acelera. Bateria: " + nivelBateria + "%");
     }
 
     @Override
     public void cargarBateria() {
         nivelBateria = 100;
-        System.out.println(marca + " (moto electrica) cargada.");
     }
 
     @Override
@@ -25,8 +31,7 @@ public class MotoElectrica extends Moto implements Electrico {
     }
 
     @Override
-    public void acelerar() {
-        nivelBateria -= 3;
-        System.out.println(marca + " (moto electrica) acelera. Bateria: " + nivelBateria + "%");
+    public String toString() {
+        return "Moto Electrica: " + marca + " " + modelo + " - Bateria " + nivelBateria + "%";
     }
 }

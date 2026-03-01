@@ -2,19 +2,21 @@ package modelo;
 
 public class Auto extends Vehiculo
  {
-    private int numeroPuertas;
+
+    private int puertas;
 
     public Auto(String marca, String modelo, int anio, int puertas) {
         super(marca, modelo, anio);
-        this.numeroPuertas = puertas;
+        this.puertas = puertas;
     }
 
     @Override
     public void acelerar() {
-        System.out.println(marca + " (auto) acelera.");
+        System.out.println("Auto acelera");
     }
 
-    public int getNumeroPuertas() {
-        return numeroPuertas;
+    @Override
+    public String toString() {
+        return "Auto: " + super.toString();
     }
 }
