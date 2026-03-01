@@ -1,66 +1,34 @@
+import java.util.ArrayList;
 import modelo.*;
 import servicio.GestorVehiculos;
-import java.util.ArrayList;
-import java.util.Scanner;
 
-public class Main 
-{
+public class Main
+ {
+
     public static void main(String[] args) {
 
-        // === DEMOSTRACION DE POLIMORFISMO ===
+        // =====================================
+        // DEMOSTRACION DE POLIMORFISMO
+        // =====================================
+        System.out.println("== DEMOSTRACION DE POLIMORFISMO ==");
+
         ArrayList<Vehiculo> flota = new ArrayList<>();
+
         flota.add(new Auto("Toyota", "Corolla", 2024, 4));
         flota.add(new Moto("Honda", "CB500", 2023, false));
         flota.add(new Camion("Volvo", "FH16", 2022, 24.0));
         flota.add(new AutoElectrico("Tesla", "Model 3", 2024, 4, 80));
-        flota.add(new MotoElectrica("NIU", "MQi+", 2023, 60));
+        flota.add(new MotoElectrica("NIU", "NQi", 2023, 60));
 
-        System.out.println("== acelerar() en toda la flota ==");
+        // Un solo recorrido: polimorfismo
         for (Vehiculo v : flota) {
             v.acelerar();
         }
 
-        // === MENU ===
+        // =====================================
+        // GESTION DE VEHICULOS (MENU)
+        // =====================================
         GestorVehiculos gestor = new GestorVehiculos();
-        Scanner sc = new Scanner(System.in);
-        int opcion;
-
-        // cargar algunos para el menu
-        gestor.agregar(new Auto("Toyota", "Corolla", 2024, 4));
-        gestor.agregar(new Moto("Honda", "CB500", 2023, false));
-        gestor.agregar(new Camion("Volvo", "FH16", 2022, 24.0));
-        gestor.agregar(new AutoElectrico("Tesla", "Model 3", 2024, 4, 15));
-        gestor.agregar(new MotoElectrica("NIU", "MQi+", 2023, 60));
-
-        do {
-            System.out.println("\n=== GESTION DE VEHICULOS ===");
-            System.out.println("1. Listar todos");
-            System.out.println("2. Filtrar por tipo");
-            System.out.println("3. Ver electricos y baterias");
-            System.out.println("4. Cargar baterias bajas");
-            System.out.println("5. Demostrar polimorfismo");
-            System.out.println("6. Estadisticas");
-            System.out.println("7. Salir");
-            System.out.print("Opcion: ");
-
-            opcion = sc.nextInt();
-            sc.nextLine();
-
-            switch (opcion) {
-                case 1: gestor.listarTodos(); break;
-                case 2:
-                    System.out.print("Tipo (auto/moto/camion/electrico): ");
-                    gestor.listarPorTipo(sc.nextLine());
-                    break;
-                case 3: gestor.listarElectricos(); break;
-                case 4: gestor.cargarElectricosNecesarios(); break;
-                case 5: gestor.demostrarPolimorfismo(); break;
-                case 6: gestor.mostrarEstadisticas(); break;
-                case 7: System.out.println("Saliendo..."); break;
-                default: System.out.println("Opcion invalida");
-            }
-        } while (opcion != 7);
-
-        sc.close();
+        gestor.menu();
     }
 }
