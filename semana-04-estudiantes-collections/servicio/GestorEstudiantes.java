@@ -6,5 +6,8 @@ import java.util.TreeSet;
 import java.util.ArrayList;
 
 public class GestorEstudiantes {
+    private HashMap<String, Estudiante> porCarnet;
+    private TreeSet<Estudiante> ranking;
+    private ArrayList<String> historial;
 
 }
