@@ -33,4 +33,75 @@ public class Main {
 
         sc.close();
     }
+    switch (opcion) {
+
+    case 1 -> {
+        System.out.print("Carnet: ");
+        String carnet = sc.nextLine();
+
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine();
+
+        System.out.print("Carrera: ");
+        String carrera = sc.nextLine();
+
+        System.out.print("Promedio: ");
+        double prom = sc.nextDouble();
+        sc.nextLine();
+
+        boolean ok = gestor.agregar(
+                new Estudiante(carnet, nombre, carrera, prom));
+
+        System.out.println(ok ?
+                "Estudiante registrado." :
+                "Error: carnet ya existe.");
+    }
+
+    case 2 -> {
+        System.out.print("Carnet: ");
+        String carnet = sc.nextLine();
+
+        Estudiante e = gestor.buscar(carnet);
+
+        System.out.println(e != null ? e : "No encontrado.");
+    }
+
+    case 3 -> {
+        System.out.print("Carnet: ");
+        String carnet = sc.nextLine();
+
+        System.out.print("Nuevo promedio: ");
+        double p = sc.nextDouble();
+        sc.nextLine();
+
+        boolean ok = gestor.actualizarPromedio(carnet, p);
+
+        System.out.println(ok ?
+                "Promedio actualizado." :
+                "Carnet no existe.");
+    }
+
+    case 4 -> {
+        System.out.print("Carnet: ");
+        String carnet = sc.nextLine();
+
+        boolean ok = gestor.eliminar(carnet);
+
+        System.out.println(ok ?
+                "Estudiante eliminado." :
+                "Carnet no encontrado.");
+    }
+
+    case 5 -> gestor.mostrarRanking();
+
+    case 6 -> gestor.mostrarTop5();
+
+    case 7 -> {
+        System.out.print("Carrera: ");
+        String carrera = sc.nextLine();
+        gestor.filtrarPorCarrera(carrera);
+    }
+
+    case 8 -> gestor.mostrarHistorial();
+}
 }
