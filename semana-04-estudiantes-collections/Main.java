@@ -25,6 +25,7 @@ public class Main {
             System.out.println("6. Ver top 5");
             System.out.println("7. Filtrar por carrera");
             System.out.println("8. Ver historial");
+            System.out.println("9. Ver estadísticas");
             System.out.println("0. Salir");
 
             System.out.print("Opcion: ");
@@ -101,6 +102,8 @@ public class Main {
                 }
 
                 case 8 -> gestor.mostrarHistorial();
+
+                case 9 -> gestor.mostrarEstadisticas();
             }
 
         } while (opcion != 0);
@@ -116,8 +119,8 @@ public class Main {
         g.agregar(new Estudiante("2021004","Luis Mamani","Civil",61.0));
         g.agregar(new Estudiante("2021005","Rosa Flores","Industrial",79.5));
         g.agregar(new Estudiante("2021006","Pedro Vargas","Sistemas",55.0));
-        g.agregar(new Estudiante("2021003","Silvia Choque","Civil",83.5));
-        g.agregar(new Estudiante("2021004","Hugo Espejo","Industrial",70.0));
+        g.agregar(new Estudiante("2021007","Silvia Choque","Civil",83.5));
+        g.agregar(new Estudiante("2021008","Hugo Espejo","Industrial",70.0));
         g.agregar(new Estudiante("2021009","Patricia Lima","Sistemas",95.0));
         g.agregar(new Estudiante("2021010","Diego Arce","Civil",67.5));
     }

@@ -115,6 +115,45 @@ public class GestorEstudiantes {
         }
     }
 
+    // Mostrar estadísticas
+    public void mostrarEstadisticas() {
+
+        System.out.println("\n=== Estadísticas del sistema ===");
+
+        int total = porCarnet.size();
+
+        if (total == 0) {
+            System.out.println("No hay estudiantes registrados.");
+            return;
+        }
+
+        double suma = 0;
+        double mejor = Double.MIN_VALUE;
+        double peor = Double.MAX_VALUE;
+
+        for (Estudiante e : porCarnet.values()) {
+
+            double p = e.getPromedio();
+
+            suma += p;
+
+            if (p > mejor) {
+                mejor = p;
+            }
+
+            if (p < peor) {
+                peor = p;
+            }
+        }
+
+        double promedioGeneral = suma / total;
+
+        System.out.println("Total de estudiantes: " + total);
+        System.out.printf("Promedio general: %.2f\n", promedioGeneral);
+        System.out.println("Mejor promedio: " + mejor);
+        System.out.println("Peor promedio: " + peor);
+    }
+
     // Mostrar historial
     public void mostrarHistorial() {
 

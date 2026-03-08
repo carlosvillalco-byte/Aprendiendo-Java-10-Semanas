@@ -54,7 +54,6 @@ public class Estudiante implements Comparable<Estudiante> {
 
     @Override
     public String toString() {
-        return String.format("[%s] %-20s %-15s %.1f",
-                carnet, nombre, carrera, promedio);
+        return String.format("[%s] %-20s %-15s %.1f", carnet, nombre, carrera, promedio);
     }
 }
