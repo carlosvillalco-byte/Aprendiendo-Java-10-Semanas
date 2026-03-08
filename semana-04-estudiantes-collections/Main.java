@@ -104,4 +104,13 @@ public class Main {
 
     case 8 -> gestor.mostrarHistorial();
 }
+private static void cargarDatosPrueba(GestorEstudiantes g) {
+
+    g.agregar(new Estudiante("2021001","Ana Torres","Sistemas",75.5));
+    g.agregar(new Estudiante("2021002","Carlos Quispe","Industrial",88.0));
+    g.agregar(new Estudiante("2021003","Maria Condori","Sistemas",92.3));
+    g.agregar(new Estudiante("2021004","Luis Mamani","Civil",61.0));
+    g.agregar(new Estudiante("2021005","Rosa Flores","Industrial",79.5));
+    g.agregar(new Estudiante("2021006","Pedro Vargas","Sistemas",55.0));
+}
 }
