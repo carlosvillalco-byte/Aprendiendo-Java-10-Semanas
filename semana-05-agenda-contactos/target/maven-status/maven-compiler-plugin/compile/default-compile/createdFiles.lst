@@ -1,0 +1,6 @@
+exception\DatoInvalidoException.class
+util\ManejadorJSON.class
+exception\ContactoExistenteException.class
+exception\ContactoNoEncontradoException.class
+modelo\Contacto.class
+util\ManejadorJSON$1.class
