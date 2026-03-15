@@ -9,10 +9,10 @@ public class AgendaContactos {
 
     private ArrayList<Contacto> contactos;
 
-    private final String ARCHIVO = "contactos.json";
-    private final String BACKUP = "contactos.backup.json";
+    private final String ARCHIVO = "data/contactos.json";
+    private final String BACKUP = "data/contactos.backup.json";
 
-    public AgendaContactos() {
+    public AgendaContactos(){
 
         contactos = ManejadorJSON.cargar(ARCHIVO);
     }
@@ -53,6 +53,7 @@ public class AgendaContactos {
     }
 
     public ArrayList<Contacto> listarTodos(){
+
         return contactos;
     }
 
@@ -68,6 +69,7 @@ public class AgendaContactos {
     }
 
     public int total(){
+
         return contactos.size();
     }
 

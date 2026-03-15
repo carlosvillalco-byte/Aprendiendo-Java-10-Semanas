@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class ManejadorJSON {
 
-    public static ArrayList<Contacto> cargar(String archivo) {
+    public static ArrayList<Contacto> cargar(String archivo){
 
-        try(FileReader reader = new FileReader(archivo)) {
+        try(FileReader reader = new FileReader(archivo)){
 
             Gson gson = new Gson();
             Type tipoLista = new TypeToken<ArrayList<Contacto>>(){}.getType();
@@ -25,7 +25,7 @@ public class ManejadorJSON {
 
             return lista;
 
-        } catch(Exception e) {
+        }catch(Exception e){
 
             return new ArrayList<>();
         }
@@ -33,13 +33,13 @@ public class ManejadorJSON {
 
     public static void guardarConBackup(ArrayList<Contacto> contactos,
                                          String archivo,
-                                         String backup) {
+                                         String backup){
 
-        try {
+        try{
 
             File f = new File(archivo);
 
-            if(f.exists()) {
+            if(f.exists()){
 
                 try(
                         FileInputStream in = new FileInputStream(f);
@@ -49,13 +49,13 @@ public class ManejadorJSON {
                 }
             }
 
-            try(FileWriter writer = new FileWriter(archivo)) {
+            try(FileWriter writer = new FileWriter(archivo)){
 
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                gson.toJson(contactos, writer);
+                gson.toJson(contactos,writer);
             }
 
-        } catch(Exception e) {
+        }catch(Exception e){
 
             System.out.println("Error al guardar JSON");
         }
