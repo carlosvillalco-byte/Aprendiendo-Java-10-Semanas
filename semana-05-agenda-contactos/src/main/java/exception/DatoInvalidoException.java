@@ -4,12 +4,12 @@ public class DatoInvalidoException extends RuntimeException {
 
     private String campo;
 
-    public DatoInvalidoException(String campo, String mensaje) {
+    public DatoInvalidoException(String campo, String mensaje){
         super(mensaje);
         this.campo = campo;
     }
 
-    public String getCampo() {
+    public String getCampo(){
         return campo;
     }
 }

@@ -1,24 +1,17 @@
 package servicio;
 
 import modelo.Contacto;
-import exception.ContactoExistenteException;
-import exception.ContactoNoEncontradoException;
-
 import java.util.ArrayList;
 
 public class AgendaContactos {
 
     private ArrayList<Contacto> contactos;
 
-    public AgendaContactos() {
+    public AgendaContactos(){
         contactos = new ArrayList<>();
     }
 
     public void agregar(Contacto c){
-
-        if(buscarPorId(c.getId()) != null)
-            throw new ContactoExistenteException(c.getId());
-
         contactos.add(c);
     }
 
@@ -54,10 +47,8 @@ public class AgendaContactos {
 
         Contacto c = buscarPorId(id);
 
-        if(c == null)
-            throw new ContactoNoEncontradoException(id);
-
-        contactos.remove(c);
+        if(c != null)
+            contactos.remove(c);
     }
 
     public int total(){

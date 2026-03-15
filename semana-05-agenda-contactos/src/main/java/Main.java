@@ -1,6 +1,6 @@
 import modelo.Contacto;
 import servicio.AgendaContactos;
-import exception.*;
+import exception.DatoInvalidoException;
 
 import java.util.Scanner;
 
@@ -9,31 +9,30 @@ public class Main {
     static AgendaContactos agenda = new AgendaContactos();
     static Scanner sc = new Scanner(System.in);
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         int op;
 
-        do{
+        do {
 
-            mostrarMenu();
+            menu();
             op = Integer.parseInt(sc.nextLine());
 
-            switch(op){
+            switch (op) {
 
-                case 1 -> agregarContacto();
-                case 2 -> listarContactos();
-                case 3 -> buscarContacto();
-                case 4 -> eliminarContacto();
-                case 5 -> mostrarEstadisticas();
-                case 6 -> System.out.println("Fin del programa");
+                case 1 -> agregar();
+                case 2 -> listar();
+                case 3 -> buscar();
+                case 4 -> eliminar();
+                case 5 -> estadisticas();
+                case 6 -> System.out.println("Saliendo...");
 
-                default -> System.out.println("Opcion invalida");
             }
 
-        }while(op!=6);
+        } while (op != 6);
     }
 
-    static void mostrarMenu(){
+    static void menu() {
 
         System.out.println("\n=== AGENDA DE CONTACTOS ===");
         System.out.println("1. Agregar contacto");
@@ -42,104 +41,109 @@ public class Main {
         System.out.println("4. Eliminar contacto");
         System.out.println("5. Estadisticas");
         System.out.println("6. Salir");
+
         System.out.print("Opcion: ");
     }
 
-    static void agregarContacto(){
+    static void agregar() {
 
-        try{
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine();
 
-            System.out.print("ID: ");
-            String id = sc.nextLine();
+        String telefono;
 
-            System.out.print("Nombre: ");
-            String nombre = sc.nextLine();
+        while (true) {
 
-            System.out.print("Telefono: ");
-            String tel = sc.nextLine();
+            try {
 
-            System.out.print("Email: ");
-            String email = sc.nextLine();
+                System.out.print("Telefono: ");
+                telefono = sc.nextLine();
 
-            System.out.print("Direccion: ");
-            String dir = sc.nextLine();
+                if (!telefono.matches("\\d{7,8}"))
+                    throw new DatoInvalidoException("telefono", "debe tener entre 7 y 8 digitos");
 
-            agenda.agregar(new Contacto(id,nombre,tel,email,dir));
+                break;
 
-            System.out.println("Contacto agregado");
+            } catch (DatoInvalidoException e) {
 
+                System.out.println("Error: Dato invalido en '" + e.getCampo() + "': " + e.getMessage());
+            }
         }
-        catch(ContactoExistenteException e){
 
-            System.out.println("Error: "+e.getMessage());
-        }
-        catch(DatoInvalidoException e){
+        String email;
 
-            System.out.println("Dato invalido en "+e.getCampo());
+        while (true) {
+
+            try {
+
+                System.out.print("Email: ");
+                email = sc.nextLine();
+
+                if (!email.contains("@"))
+                    throw new DatoInvalidoException("email", "debe contener @");
+
+                break;
+
+            } catch (DatoInvalidoException e) {
+
+                System.out.println("Error: Dato invalido en '" + e.getCampo() + "': " + e.getMessage());
+            }
         }
+
+        System.out.print("Direccion (opcional): ");
+        String direccion = sc.nextLine();
+
+        String id = "C00" + (agenda.total() + 1);
+
+        Contacto c = new Contacto(id, nombre, telefono, email, direccion);
+
+        agenda.agregar(c);
+
+        System.out.println("Contacto agregado con ID: " + id);
     }
 
-    static void listarContactos(){
+    static void listar() {
 
         var lista = agenda.listarTodos();
 
-        if(lista.isEmpty()){
+        System.out.println("\n=== TODOS LOS CONTACTOS (" + lista.size() + ") ===");
 
-            System.out.println("No hay contactos");
-            return;
-        }
+        System.out.println("ID    | Nombre           | Telefono  | Email");
+        System.out.println("-----------------------------------------------");
 
-        System.out.println("\nID    | Nombre          | Telefono   | Email");
-
-        for(var c : lista)
+        for (var c : lista)
             System.out.println(c);
     }
 
-    static void buscarContacto(){
+    static void buscar() {
 
-        System.out.print("Ingrese nombre o ID: ");
-        String dato = sc.nextLine();
+        System.out.print("Nombre a buscar: ");
+        String texto = sc.nextLine();
 
-        Contacto c = agenda.buscarPorId(dato);
+        var lista = agenda.buscarPorNombre(texto);
 
-        if(c != null){
-
+        for (var c : lista)
             System.out.println(c);
-            return;
-        }
-
-        var lista = agenda.buscarPorNombre(dato);
-
-        if(lista.isEmpty())
-            System.out.println("No encontrado");
-        else
-            lista.forEach(System.out::println);
     }
 
-    static void eliminarContacto(){
+    static void eliminar() {
 
         System.out.print("ID a eliminar: ");
         String id = sc.nextLine();
 
-        try{
+        agenda.eliminar(id);
 
-            agenda.eliminar(id);
-            System.out.println("Contacto eliminado");
-
-        }
-        catch(ContactoNoEncontradoException e){
-
-            System.out.println(e.getMessage());
-        }
+        System.out.println("Contacto eliminado");
     }
 
-    static void mostrarEstadisticas(){
+    static void estadisticas() {
 
         int total = agenda.total();
         int conEmail = agenda.totalConEmail();
 
-        System.out.println("\nTotal contactos: "+total);
-        System.out.println("Con email: "+conEmail);
-        System.out.println("Sin email: "+(total-conEmail));
+        System.out.println("\n=== ESTADISTICAS ===");
+        System.out.println("Total contactos: " + total);
+        System.out.println("Con email: " + conEmail);
+        System.out.println("Sin email: " + (total - conEmail));
     }
 }

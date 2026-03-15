@@ -10,7 +10,8 @@ public class Contacto {
     private String email;
     private String direccion;
 
-    public Contacto(String id, String nombre, String telefono, String email, String direccion) {
+    public Contacto(String id, String nombre, String telefono, String email, String direccion){
+
         setId(id);
         setNombre(nombre);
         setTelefono(telefono);
@@ -18,66 +19,77 @@ public class Contacto {
         setDireccion(direccion);
     }
 
-    public String getId() {
+    public String getId(){
         return id;
     }
 
-    public String getNombre() {
+    public String getNombre(){
         return nombre;
     }
 
-    public String getTelefono() {
+    public String getTelefono(){
         return telefono;
     }
 
-    public String getEmail() {
+    public String getEmail(){
         return email;
     }
 
-    public String getDireccion() {
+    public String getDireccion(){
         return direccion;
     }
 
-    public void setId(String id) {
+    public void setId(String id){
 
         if(id == null || id.trim().isEmpty())
-            throw new DatoInvalidoException("id","no puede estar vacio");
+            throw new DatoInvalidoException("id","no puede estar vacío");
 
-        this.id = id.trim();
+        this.id = id;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre){
 
         if(nombre == null || nombre.trim().isEmpty())
-            throw new DatoInvalidoException("nombre","no puede estar vacio");
+            throw new DatoInvalidoException("nombre","no puede estar vacío");
 
-        this.nombre = nombre.trim();
+        this.nombre = nombre;
     }
 
-    public void setTelefono(String telefono) {
+    // VALIDACION TELEFONO
+    public void setTelefono(String telefono){
 
-        if(telefono == null || telefono.length() < 7 || telefono.length() > 8)
-            throw new DatoInvalidoException("telefono","debe tener entre 7 y 8 digitos");
+        if(telefono == null || telefono.isEmpty())
+            throw new DatoInvalidoException("telefono","no puede estar vacío");
+
+        if(!telefono.matches("\\d+"))
+            throw new DatoInvalidoException("telefono","solo debe contener números");
+
+        if(telefono.length() < 7 || telefono.length() > 8)
+            throw new DatoInvalidoException("telefono","debe tener 7 u 8 dígitos");
 
         this.telefono = telefono;
     }
 
-    public void setEmail(String email) {
+    // VALIDACION EMAIL
+    public void setEmail(String email){
 
-        if(email != null && !email.isEmpty() && !email.contains("@"))
-            throw new DatoInvalidoException("email","debe contener @");
+        if(email != null && !email.isEmpty()){
+
+            if(!email.contains("@") || !email.contains("."))
+                throw new DatoInvalidoException("email","formato inválido");
+        }
 
         this.email = email;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(String direccion){
         this.direccion = direccion;
     }
 
     @Override
-    public String toString() {
+    public String toString(){
 
-        return String.format("%-5s | %-15s | %-10s | %-20s",
-                id, nombre, telefono, email);
+        return String.format("%-5s | %-15s | %-9s | %s",
+                id,nombre,telefono,email);
     }
 }

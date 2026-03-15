@@ -4,12 +4,20 @@
     "nombre": "Juan Perez",
     "telefono": "72345678",
     "email": "juan@gmail.com",
-    "direccion": "Oruro"
+    "direccion": "Calle La Paz 33"
   },
   {
     "id": "C002",
     "nombre": "Maria Lopez",
     "telefono": "79876543",
+    "email": "maria@hotmail.com",
+    "direccion": ""
+  },
+  {
+    "id": "C003",
+    "nombre": "Pedro Quispe",
+    "telefono": "68112233",
     "email": "",
-    "direccion": "La Paz"
+    "direccion": "Calle Cochabamba 45"
   }
+]
