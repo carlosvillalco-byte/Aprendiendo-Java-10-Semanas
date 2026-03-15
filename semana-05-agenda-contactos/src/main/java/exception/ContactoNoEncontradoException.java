@@ -2,8 +2,7 @@ package exception;
 
 public class ContactoNoEncontradoException extends Exception {
 
-    public ContactoNoEncontradoException(String mensaje) {
-        super(mensaje);
+    public ContactoNoEncontradoException(String id) {
+        super("No se encontro contacto con ID '" + id + "'");
     }
-
 }

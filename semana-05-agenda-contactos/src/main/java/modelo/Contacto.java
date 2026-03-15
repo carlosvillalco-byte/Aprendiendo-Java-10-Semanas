@@ -1,61 +1,56 @@
 package modelo;
+import exception.DatoInvalidoException;
 
 public class Contacto {
 
     private String id;
     private String nombre;
     private String telefono;
-    private String email;
-    private String direccion;
 
-    public Contacto() {
-    }
-
-    public Contacto(String id, String nombre, String telefono, String email, String direccion) {
-        this.id = id;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.email = email;
-        this.direccion = direccion;
+    public Contacto(String id, String nombre, String telefono) {
+        setId(id);
+        setNombre(nombre);
+        setTelefono(telefono);
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getTelefono() {
         return telefono;
     }
 
+    public void setId(String id) {
+
+        if(id == null || id.trim().isEmpty())
+            throw new DatoInvalidoException("id","no puede estar vacio");
+
+        this.id = id.trim();
+    }
+
+    public void setNombre(String nombre) {
+
+        if(nombre == null || nombre.trim().isEmpty())
+            throw new DatoInvalidoException("nombre","no puede estar vacio");
+
+        this.nombre = nombre.trim();
+    }
+
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+
+        if(telefono == null || telefono.trim().isEmpty())
+            throw new DatoInvalidoException("telefono","no puede estar vacio");
+
+        this.telefono = telefono.trim();
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    @Override
+    public String toString() {
+        return "[" + id + "] " + nombre + " - Tel: " + telefono;
     }
 }

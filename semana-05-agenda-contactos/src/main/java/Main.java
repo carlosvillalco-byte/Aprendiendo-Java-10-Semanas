@@ -13,10 +13,12 @@ public class Main {
         int opcion;
 
         do {
+
             mostrarMenu();
+
             opcion = leerOpcion();
 
-            switch (opcion) {
+            switch(opcion){
 
                 case 1: agregarContacto(); break;
                 case 2: listarContactos(); break;
@@ -26,20 +28,22 @@ public class Main {
                 default: System.out.println("Opcion invalida.");
             }
 
-        } while (opcion != 5);
+        } while(opcion != 5);
 
         sc.close();
     }
 
-    static int leerOpcion() {
-        try {
+    static int leerOpcion(){
+
+        try{
             return Integer.parseInt(sc.nextLine().trim());
-        } catch (NumberFormatException e) {
+        }
+        catch(NumberFormatException e){
             return -1;
         }
     }
 
-    static void mostrarMenu() {
+    static void mostrarMenu(){
 
         System.out.println("\n=== AGENDA ===");
         System.out.println("1. Agregar contacto");
@@ -50,9 +54,9 @@ public class Main {
         System.out.print("Opcion: ");
     }
 
-    static void agregarContacto() {
+    static void agregarContacto(){
 
-        try {
+        try{
 
             System.out.print("ID: ");
             String id = sc.nextLine();
@@ -63,63 +67,67 @@ public class Main {
             System.out.print("Telefono: ");
             String tel = sc.nextLine();
 
-            agenda.agregar(new Contacto(id, nombre, tel));
+            agenda.agregar(new Contacto(id,nombre,tel));
 
             System.out.println("Contacto guardado.");
 
-        } catch (ContactoExistenteException e) {
+        }
+        catch(ContactoExistenteException e){
 
             System.out.println("Error: " + e.getMessage());
+        }
+        catch(DatoInvalidoException e){
 
-        } catch (DatoInvalidoException e) {
-
-            System.out.println("Dato invalido en " + e.getCampo() + ": "
-                    + e.getMessage());
+            System.out.println("Dato invalido en "
+                    + e.getCampo() + ": " + e.getMessage());
         }
     }
 
-    static void listarContactos() {
+    static void listarContactos(){
 
         var lista = agenda.listarTodos();
 
-        if (lista.isEmpty()) {
+        if(lista.isEmpty()){
+
             System.out.println("No hay contactos.");
             return;
         }
 
         System.out.println("\n=== CONTACTOS (" + lista.size() + ") ===");
 
-        for (var c : lista)
+        for(var c : lista)
             System.out.println(c);
     }
 
-    static void buscarContacto() {
+    static void buscarContacto(){
 
         System.out.print("ID a buscar: ");
+
         String id = sc.nextLine();
 
-        try {
+        try{
 
             System.out.println(agenda.buscar(id));
-
-        } catch (ContactoNoEncontradoException e) {
+        }
+        catch(ContactoNoEncontradoException e){
 
             System.out.println(e.getMessage());
         }
     }
 
-    static void eliminarContacto() {
+    static void eliminarContacto(){
 
         System.out.print("ID a eliminar: ");
+
         String id = sc.nextLine();
 
-        try {
+        try{
 
             agenda.eliminar(id);
 
             System.out.println("Contacto eliminado.");
-
-        } catch (ContactoNoEncontradoException e) {
+        }
+        catch(ContactoNoEncontradoException e){
 
             System.out.println(e.getMessage());
         }

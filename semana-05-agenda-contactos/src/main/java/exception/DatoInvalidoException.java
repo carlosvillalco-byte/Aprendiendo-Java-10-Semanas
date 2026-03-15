@@ -1,9 +1,15 @@
 package exception;
 
-public class DatoInvalidoException extends Exception {
+public class DatoInvalidoException extends RuntimeException {
 
-    public DatoInvalidoException(String mensaje) {
+    private String campo;
+
+    public DatoInvalidoException(String campo, String mensaje) {
         super(mensaje);
+        this.campo = campo;
     }
 
+    public String getCampo() {
+        return campo;
+    }
 }
