@@ -10,7 +10,7 @@ public class Contacto {
     private String email;
     private String direccion;
 
-    public Contacto(String id, String nombre, String telefono, String email, String direccion){
+    public Contacto(String id, String nombre, String telefono, String email, String direccion) {
 
         setId(id);
         setNombre(nombre);
@@ -19,50 +19,33 @@ public class Contacto {
         setDireccion(direccion);
     }
 
-    public String getId(){
-        return id;
-    }
+    public String getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getTelefono() { return telefono; }
+    public String getEmail() { return email; }
+    public String getDireccion() { return direccion; }
 
-    public String getNombre(){
-        return nombre;
-    }
-
-    public String getTelefono(){
-        return telefono;
-    }
-
-    public String getEmail(){
-        return email;
-    }
-
-    public String getDireccion(){
-        return direccion;
-    }
-
-    public void setId(String id){
-
+    public void setId(String id) {
         if(id == null || id.trim().isEmpty())
             throw new DatoInvalidoException("id","no puede estar vacío");
 
         this.id = id;
     }
 
-    public void setNombre(String nombre){
-
+    public void setNombre(String nombre) {
         if(nombre == null || nombre.trim().isEmpty())
             throw new DatoInvalidoException("nombre","no puede estar vacío");
 
         this.nombre = nombre;
     }
 
-    // VALIDACION TELEFONO
-    public void setTelefono(String telefono){
+    public void setTelefono(String telefono) {
 
         if(telefono == null || telefono.isEmpty())
             throw new DatoInvalidoException("telefono","no puede estar vacío");
 
         if(!telefono.matches("\\d+"))
-            throw new DatoInvalidoException("telefono","solo debe contener números");
+            throw new DatoInvalidoException("telefono","solo números");
 
         if(telefono.length() < 7 || telefono.length() > 8)
             throw new DatoInvalidoException("telefono","debe tener 7 u 8 dígitos");
@@ -70,13 +53,12 @@ public class Contacto {
         this.telefono = telefono;
     }
 
-    // VALIDACION EMAIL
-    public void setEmail(String email){
+    public void setEmail(String email) {
 
         if(email != null && !email.isEmpty()){
 
-            if(!email.contains("@") || !email.contains("."))
-                throw new DatoInvalidoException("email","formato inválido");
+            if(!email.contains("@"))
+                throw new DatoInvalidoException("email","debe contener @");
         }
 
         this.email = email;
@@ -88,7 +70,6 @@ public class Contacto {
 
     @Override
     public String toString(){
-
         return String.format("%-5s | %-15s | %-9s | %s",
                 id,nombre,telefono,email);
     }

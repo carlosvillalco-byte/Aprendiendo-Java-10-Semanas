@@ -1,18 +1,31 @@
 package servicio;
 
 import modelo.Contacto;
+import util.ManejadorJSON;
+
 import java.util.ArrayList;
 
 public class AgendaContactos {
 
     private ArrayList<Contacto> contactos;
 
-    public AgendaContactos(){
-        contactos = new ArrayList<>();
+    private final String ARCHIVO = "contactos.json";
+    private final String BACKUP = "contactos.backup.json";
+
+    public AgendaContactos() {
+
+        contactos = ManejadorJSON.cargar(ARCHIVO);
+    }
+
+    public void guardar(){
+
+        ManejadorJSON.guardarConBackup(contactos,ARCHIVO,BACKUP);
     }
 
     public void agregar(Contacto c){
+
         contactos.add(c);
+        guardar();
     }
 
     public Contacto buscarPorId(String id){
@@ -47,8 +60,11 @@ public class AgendaContactos {
 
         Contacto c = buscarPorId(id);
 
-        if(c != null)
+        if(c != null){
+
             contactos.remove(c);
+            guardar();
+        }
     }
 
     public int total(){

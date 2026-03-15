@@ -19,5 +19,54 @@
     "telefono": "68112233",
     "email": "",
     "direccion": "Calle Cochabamba 45"
+  },
+  {
+  "id":"C004",
+  "nombre":"Ana Torres",
+  "telefono":"74567891",
+  "email":"ana@gmail.com",
+  "direccion":"Santa Cruz"
+  },
+  {
+  "id":"C005",
+  "nombre":"Luis Flores",
+  "telefono":"75678912",
+  "email":"",
+  "direccion":"Oruro"
+  },
+  {
+  "id":"C006",
+  "nombre":"Pedro Ramos",
+  "telefono":"72345678",
+  "email":"pedro@gmail.com",
+  "direccion":"Potosi"
+  },
+  {
+  "id":"C007",
+  "nombre":"Laura Diaz",
+  "telefono":"73451234",
+  "email":"",
+  "direccion":"Sucre"
+  },
+  {
+  "id":"C008",
+  "nombre":"Jose Vargas",
+  "telefono":"74561234",
+  "email":"jose@gmail.com",
+  "direccion":"Tarija"
+  },
+  {
+  "id":"C009",
+  "nombre":"Rosa Medina",
+  "telefono":"75612345",
+  "email":"rosa@gmail.com",
+  "direccion":"Oruro"
+  },
+  {
+  "id":"C010",
+  "nombre":"Miguel Perez",
+  "telefono":"76712345",
+  "email":"",
+  "direccion":"La Paz"
   }
 ]
