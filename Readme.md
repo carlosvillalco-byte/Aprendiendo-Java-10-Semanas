@@ -10,6 +10,6 @@ Repositorio del curso Java.
 | 2 | POO Fundamentos | semana-02-gestor-tareas/ |
 | 3 | POO 2da. Parte | semana-03-vehiculos-poo/ |
 | 4 | Collections Framework | semana-04-estudiantes-collections/ |
-
+| 5 | Excepciones y Persistencia JSON | semana-05-agenda-contactos/ |
 ## Autor
 [Carlos Ailton Villca Alcocer]
