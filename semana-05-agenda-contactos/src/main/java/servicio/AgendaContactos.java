@@ -1,65 +1,79 @@
 package servicio;
 
-import exception.*;
 import modelo.Contacto;
-import util.ManejadorJSON;
+import exception.ContactoExistenteException;
+import exception.ContactoNoEncontradoException;
+
 import java.util.ArrayList;
 
 public class AgendaContactos {
 
-    private static final String ARCHIVO = "data/contactos.json";
-    private static final String BACKUP = "data/contactos.backup.json";
-
     private ArrayList<Contacto> contactos;
 
     public AgendaContactos() {
-
-        contactos = ManejadorJSON.cargar(ARCHIVO);
-
-        System.out.println("Agenda cargada con "
-                + contactos.size() + " contactos.");
+        contactos = new ArrayList<>();
     }
 
-    private void persistir() {
-        ManejadorJSON.guardarConBackup(contactos, ARCHIVO, BACKUP);
-    }
+    public void agregar(Contacto c){
 
-    public void agregar(Contacto c)
-            throws ContactoExistenteException {
-
-        for(Contacto existente : contactos) {
-
-            if(existente.getId().equals(c.getId()))
-                throw new ContactoExistenteException(c.getId());
-        }
+        if(buscarPorId(c.getId()) != null)
+            throw new ContactoExistenteException(c.getId());
 
         contactos.add(c);
-        persistir();
     }
 
-    public ArrayList<Contacto> listarTodos() {
-        return contactos;
-    }
+    public Contacto buscarPorId(String id){
 
-    public Contacto buscar(String id)
-            throws ContactoNoEncontradoException {
+        for(Contacto c : contactos){
 
-        for(Contacto c : contactos) {
-
-            if(c.getId().equals(id))
+            if(c.getId().equalsIgnoreCase(id))
                 return c;
         }
 
-        throw new ContactoNoEncontradoException(id);
+        return null;
     }
 
-    public void eliminar(String id)
-            throws ContactoNoEncontradoException {
+    public ArrayList<Contacto> buscarPorNombre(String texto){
 
-        Contacto c = buscar(id);
+        ArrayList<Contacto> resultado = new ArrayList<>();
+
+        for(Contacto c : contactos){
+
+            if(c.getNombre().toLowerCase().contains(texto.toLowerCase()))
+                resultado.add(c);
+        }
+
+        return resultado;
+    }
+
+    public ArrayList<Contacto> listarTodos(){
+        return contactos;
+    }
+
+    public void eliminar(String id){
+
+        Contacto c = buscarPorId(id);
+
+        if(c == null)
+            throw new ContactoNoEncontradoException(id);
 
         contactos.remove(c);
+    }
 
-        persistir();
+    public int total(){
+        return contactos.size();
+    }
+
+    public int totalConEmail(){
+
+        int cont = 0;
+
+        for(Contacto c : contactos){
+
+            if(c.getEmail()!=null && !c.getEmail().isEmpty())
+                cont++;
+        }
+
+        return cont;
     }
 }

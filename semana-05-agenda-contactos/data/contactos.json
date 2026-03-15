@@ -1,0 +1,15 @@
+[
+  {
+    "id": "C001",
+    "nombre": "Juan Perez",
+    "telefono": "72345678",
+    "email": "juan@gmail.com",
+    "direccion": "Oruro"
+  },
+  {
+    "id": "C002",
+    "nombre": "Maria Lopez",
+    "telefono": "79876543",
+    "email": "",
+    "direccion": "La Paz"
+  }
