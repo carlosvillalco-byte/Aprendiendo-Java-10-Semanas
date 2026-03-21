@@ -7,7 +7,7 @@ public class Contacto {
     private String telefono;
     private String email;
     private String direccion;
-    private String categoria; // ✅ NUEVO
+    private String categoria;
 
     public Contacto(String id, String nombre, String telefono, String email, String direccion, String categoria) {
 
@@ -16,7 +16,7 @@ public class Contacto {
         setTelefono(telefono);
         setEmail(email);
         setDireccion(direccion);
-        setCategoria(categoria); // ✅ NUEVO
+        setCategoria(categoria); 
     }
 
     public String getId() { return id; }
@@ -63,7 +63,7 @@ public class Contacto {
         this.direccion = direccion;
     }
 
-    public void setCategoria(String categoria) { // ✅ NUEVO
+    public void setCategoria(String categoria) { 
         if(categoria == null || categoria.trim().isEmpty())
             throw new IllegalArgumentException("categoria no puede estar vacía");
 

@@ -1,3 +1,4 @@
+Main.class
 util\ManejadorJSON.class
 servicio\AgendaContactos.class
 modelo\Contacto.class
