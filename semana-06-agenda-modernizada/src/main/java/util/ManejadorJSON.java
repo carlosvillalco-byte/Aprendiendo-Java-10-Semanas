@@ -12,52 +12,51 @@ import java.util.ArrayList;
 public class ManejadorJSON {
 
     public static ArrayList<Contacto> cargar(String archivo){
-
-        try(FileReader reader = new FileReader(archivo)){
+        try (FileReader reader = new FileReader(archivo)) {
 
             Gson gson = new Gson();
             Type tipoLista = new TypeToken<ArrayList<Contacto>>(){}.getType();
 
             ArrayList<Contacto> lista = gson.fromJson(reader, tipoLista);
 
-            if(lista == null)
+            if (lista == null)
                 lista = new ArrayList<>();
+
+
+            System.out.println("Se cargaron " + lista.size() + " contactos desde " + archivo);
 
             return lista;
 
-        }catch(Exception e){
-
+        } catch (FileNotFoundException e) {
+            System.out.println("Archivo no encontrado: " + archivo);
+            e.printStackTrace();
+            return new ArrayList<>();
+        } catch (Exception e) {
+            System.out.println("Error al cargar JSON: " + e.getMessage());
+            e.printStackTrace();
             return new ArrayList<>();
         }
     }
 
     public static void guardarConBackup(ArrayList<Contacto> contactos,
-                                         String archivo,
-                                         String backup){
-
-        try{
-
+                                        String archivo,
+                                        String backup){
+        try {
             File f = new File(archivo);
-
-            if(f.exists()){
-
-                try(
-                        FileInputStream in = new FileInputStream(f);
-                        FileOutputStream out = new FileOutputStream(backup)
-                ){
+            if (f.exists()) {
+                try (FileInputStream in = new FileInputStream(f);
+                     FileOutputStream out = new FileOutputStream(backup)) {
                     in.transferTo(out);
                 }
             }
-
-            try(FileWriter writer = new FileWriter(archivo)){
-
+            try (FileWriter writer = new FileWriter(archivo)) {
                 Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                gson.toJson(contactos,writer);
+                gson.toJson(contactos, writer);
             }
 
-        }catch(Exception e){
-
-            System.out.println("Error al guardar JSON");
+        } catch (Exception e) {
+            System.out.println("Error al guardar JSON: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }
