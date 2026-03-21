@@ -1,4 +1,27 @@
+
 [
-  {"nombre":"Ana Lopez","telefono":"76543210","categoria":"Amigos"},
-  {"nombre":"Carlos Rios","telefono":"71112233","categoria":"Trabajo"}
+  {
+    "id": "C001",
+    "nombre": "Juan Perez",
+    "telefono": "72330292",
+    "email": "ailton@gmail.com",
+    "direccion": "Calle La Paz 33"
+    "categoria":"Amigos"
+  },
+  {
+    "id": "C002",
+    "nombre": "Maria Lopez",
+    "telefono": "79876543",
+    "email": "maria@hotmail.com",
+    "direccion": ""
+    "categoria":"Amigos"
+  },
+  {
+    "id": "C003",
+    "nombre": "Pedro Quispe",
+    "telefono": "68112233",
+    "email": "",
+    "direccion": "Calle Cochabamba 45"
+    "categoria":"Amigos"
+  },
 ]

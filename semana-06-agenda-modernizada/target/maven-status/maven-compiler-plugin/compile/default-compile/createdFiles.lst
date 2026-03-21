@@ -1,1 +1,4 @@
+util\ManejadorJSON.class
+servicio\AgendaContactos.class
 modelo\Contacto.class
+util\ManejadorJSON$1.class
