@@ -9,14 +9,16 @@ public class Contacto {
     private String telefono;
     private String email;
     private String direccion;
+    private String categoria; 
 
-    public Contacto(String id, String nombre, String telefono, String email, String direccion) {
+    public Contacto(String id, String nombre, String telefono, String email, String direccion, String categoria) {
 
         setId(id);
         setNombre(nombre);
         setTelefono(telefono);
         setEmail(email);
         setDireccion(direccion);
+        this.categoria = categoria; 
     }
 
     public String getId() { return id; }
@@ -24,6 +26,7 @@ public class Contacto {
     public String getTelefono() { return telefono; }
     public String getEmail() { return email; }
     public String getDireccion() { return direccion; }
+    public String getCategoria() { return categoria; } 
 
     public void setId(String id) {
 
@@ -67,14 +70,13 @@ public class Contacto {
     }
 
     public void setDireccion(String direccion) {
-
         this.direccion = direccion;
     }
 
     @Override
     public String toString(){
 
-        return String.format("%-5s | %-15s | %-9s | %s",
-                id,nombre,telefono,email);
+        return String.format("%-5s | %-15s | %-9s | %s | %s",
+                id,nombre,telefono,email,categoria);
     }
 }
