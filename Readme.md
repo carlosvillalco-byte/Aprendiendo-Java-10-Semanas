@@ -11,5 +11,6 @@ Repositorio del curso Java.
 | 3 | POO 2da. Parte | semana-03-vehiculos-poo/ |
 | 4 | Collections Framework | semana-04-estudiantes-collections/ |
 | 5 | Excepciones y Persistencia JSON | semana-05-agenda-contactos/ |
+| 6 | Java Moderno + Testing con JUnit 5 | semana-05-agenda-modernizada/ |
 ## Autor
 [Carlos Ailton Villca Alcocer]
