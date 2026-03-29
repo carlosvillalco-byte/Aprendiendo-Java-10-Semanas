@@ -12,5 +12,6 @@ Repositorio del curso Java.
 | 4 | Collections Framework | semana-04-estudiantes-collections/ |
 | 5 | Excepciones y Persistencia JSON | semana-05-agenda-contactos/ |
 | 6 | Java Moderno + Testing con JUnit 5 | semana-06-agenda-modernizada/ |
+| 7 | VAADIN- 1RA PARTE| semana-07-agenda-web/ |
 ## Autor
 [Carlos Ailton Villca Alcocer]
