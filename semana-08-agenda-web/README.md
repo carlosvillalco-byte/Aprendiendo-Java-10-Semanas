@@ -1,57 +1,36 @@
-#  Agenda Web - Semana 07
+#  Agenda de Contactos
 
-## 1 Descripción
-Este proyecto es una aplicación web básica desarrollada con *Spring Boot* y *Vaadin*.  
-Permite visualizar una página de inicio y navegar a una segunda vista de contactos.
-
-El objetivo es comprender cómo levantar una aplicación web en Java y manejar navegación entre vistas.
+## 1.- Descripción
+Esta aplicación web permite gestionar una agenda de contactos de manera sencilla y organizada. El usuario puede visualizar contactos en forma de tarjetas y navegar entre diferentes vistas. Está desarrollada utilizando Vaadin y Spring Boot para ofrecer una interfaz moderna e interactiva.
 
 ---
 
-## 2 Cómo ejecutar la aplicación
+## 2.- Componentes utilizados
 
-### a. Clonar el repositorio
-git clone <URL_DEL_REPOSITORIO>
+- *AppLayout*: Define la estructura principal de la aplicación con barra de navegación superior.
+- *MenuBar*: Permite navegar entre las vistas de Inicio y Contactos.
+- *VerticalLayout*: Organiza los elementos en forma vertical dentro de las vistas.
+- *HorizontalLayout*: Se utiliza para distribuir las tarjetas de contactos horizontalmente.
+- *Div*: Contenedor flexible usado para estructurar secciones como el footer.
+- *H2 / H3 / Paragraph / Span*: Componentes de texto para títulos, subtítulos y descripciones.
 
-### b. Entrar a la carpeta del proyecto
-cd semana-07-agenda-web
+---
 
-### c. Ejecutar la aplicación
+## 3.- Cómo ejecutar el proyecto
+
+Ejecuta el siguiente comando en la raíz del proyecto:
+
 mvn spring-boot:run
 
 ---
 
-## 3 Acceder en el navegador
+## 4.- Capturas de Pantalla
 
-Abrir en el navegador:
-http://localhost:8080
+VISTA INICIO
 
----
+![Vista Inicio](capturas/Inicio.png)
 
-## 4 Funcionalidades
+VISTA CONTACTOS
 
-- Página de inicio con:
-  - Título (H1)
-  - Descripción (Paragraph)
-  - Botón para ir a contactos
-
-- Página de contactos:
-  - Mensaje informativo
-  - Botón para volver al inicio
-  - Notificación al cargar la vista
-
-- Navegación entre vistas funcionando correctamente
-
----
-
-## 5 Tecnologías utilizadas
-
-- Java 17
-- Spring Boot
-- Vaadin
-- Maven
-
----
-
-
+![Vista Contactos](capturas/Contactos.png)
 

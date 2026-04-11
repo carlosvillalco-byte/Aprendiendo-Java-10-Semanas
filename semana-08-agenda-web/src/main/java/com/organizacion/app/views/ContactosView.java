@@ -24,7 +24,7 @@ public class ContactosView extends VerticalLayout {
         Paragraph descripcion =new Paragraph("Gestiona todos tus contactos en un solo lugar");
         H3 subtitulo =new H3("Mis Contactos");
 
-        HorizontalLayout cuadricula =new HorizontalLayout();
+        FlexLayout cuadricula =new FlexLayout();
         cuadricula.setFlexWrap(FlexLayout.FlexWrap.WRAP);
         cuadricula.setWidthFull();
         cuadricula.add(
