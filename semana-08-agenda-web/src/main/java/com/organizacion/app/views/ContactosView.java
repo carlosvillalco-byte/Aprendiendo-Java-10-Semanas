@@ -25,13 +25,13 @@ public class ContactosView extends VerticalLayout {
         H3 subtitulo =new H3("Mis Contactos");
 
         HorizontalLayout cuadricula =new HorizontalLayout();
-        cuadricula.setFleWrap(FlexLayout.FlexWrap.WRAP);
+        cuadricula.setFlexWrap(FlexLayout.FlexWrap.WRAP);
         cuadricula.setWidthFull();
         cuadricula.add(
-            new TargetaContacto ("Ana Martinez","71234567","ana@email.com"),
-            new TargetaContacto ("Carlos Quispe","78901234","carlos@email.com"),
-            new TargetaContacto ("Lucia Flores","69876543","lucia@email.com"),
-            new TargetaContacto ("Roberto Vargas","72345678","roberto@email.com")
+            new TarjetaContacto ("Ana Martinez","71234567","ana@email.com"),
+            new TarjetaContacto ("Carlos Quispe","78901234","carlos@email.com"),
+            new TarjetaContacto ("Lucia Flores","69876543","lucia@email.com"),
+            new TarjetaContacto ("Roberto Vargas","72345678","roberto@email.com")
         );
 
          VerticalLayout contenido =new VerticalLayout(titulo,descripcion,subtitulo,cuadricula);
