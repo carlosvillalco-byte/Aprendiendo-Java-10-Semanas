@@ -12,11 +12,11 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.NumberField;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "contactos", layout = MainLayout.class)
 public class ContactosView extends VerticalLayout {
-
     public ContactosView() 
     {
         setSizeFull();
@@ -33,6 +33,10 @@ public class ContactosView extends VerticalLayout {
         campoNombre.setWidthFull();
         campoEmail.setWidthFull();
         campoTelefono.setWidthFull();
+        FormLayout formulario = new FormLayout();
+        formulario.add(campoNombre, campoEmail, campoTelefono);
+        formulario.setColspan(campoNombre, 2);
+        formulario.setWidthFull();
         FlexLayout cuadricula = new FlexLayout();
         cuadricula.setFlexWrap(FlexLayout.FlexWrap.WRAP);
         cuadricula.setWidthFull();
@@ -45,9 +49,7 @@ public class ContactosView extends VerticalLayout {
         VerticalLayout contenido = new VerticalLayout(
                 titulo,
                 descripcion,
-                campoNombre,   
-                campoEmail,    
-                campoTelefono, 
+                formulario,   
                 subtitulo,
                 cuadricula
         );
