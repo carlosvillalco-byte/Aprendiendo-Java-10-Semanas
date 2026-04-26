@@ -1,5 +1,6 @@
 package com.organizacion.app.views;
 
+import com.organizacion.app.modelo.Contacto;
 import com.organizacion.app.ui.MainLayout;
 import com.organizacion.app.ui.TarjetaContacto;
 import com.vaadin.flow.component.html.Div;
@@ -13,10 +14,13 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "contactos", layout = MainLayout.class)
 public class ContactosView extends VerticalLayout {
+    private Binder<Contacto> binder = new Binder<>(Contacto.class);
+
     public ContactosView() 
     {
         setSizeFull();
@@ -33,6 +37,7 @@ public class ContactosView extends VerticalLayout {
         campoNombre.setWidthFull();
         campoEmail.setWidthFull();
         campoTelefono.setWidthFull();
+        configurarBinder(campoNombre, campoEmail, campoTelefono);
         FormLayout formulario = new FormLayout();
         formulario.add(campoNombre, campoEmail, campoTelefono);
         formulario.setColspan(campoNombre, 2);
@@ -58,5 +63,20 @@ public class ContactosView extends VerticalLayout {
         footer.setWidthFull();
         add(contenido, footer);
         expand(contenido);
+    }
+    private void configurarBinder(TextField campoNombre, EmailField campoEmail, NumberField campoTelefono) 
+    {
+        binder.forField(campoNombre)
+                .asRequired("El nombre no puede estar vacio") // VALIDACIÓN
+                .bind(Contacto::getNombre, Contacto::setNombre);
+        binder.forField(campoEmail)
+                .bind(Contacto::getEmail, Contacto::setEmail);
+        binder.forField(campoTelefono)
+                .withConverter
+                (
+                        v -> v == null ? "" : String.valueOf(v.intValue()),
+                        t -> t == null || t.isEmpty() ? null : Double.valueOf(t)
+                )
+                .bind(Contacto::getTelefono, Contacto::setTelefono);
     }
 }
