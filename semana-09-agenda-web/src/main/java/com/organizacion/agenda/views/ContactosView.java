@@ -1,28 +1,36 @@
 package com.organizacion.app.views;
 
 import com.organizacion.app.modelo.Contacto;
+import com.organizacion.app.service.ContactoService;
 import com.organizacion.app.ui.MainLayout;
 import com.organizacion.app.ui.TarjetaContacto;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.NumberField;
-import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
+import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "contactos", layout = MainLayout.class)
-public class ContactosView extends VerticalLayout {
-    private Binder<Contacto> binder = new Binder<>(Contacto.class);
+public class ContactosView extends VerticalLayout
+ {
+    private final ContactoService servicio;
 
-    public ContactosView() 
-    {
+    private Binder<Contacto> binder = new Binder<>(Contacto.class);
+    public ContactosView(ContactoService servicio) {
+        this.servicio = servicio;
+
         setSizeFull();
         setPadding(true);
         H2 titulo = new H2("Contactos");
@@ -42,6 +50,11 @@ public class ContactosView extends VerticalLayout {
         formulario.add(campoNombre, campoEmail, campoTelefono);
         formulario.setColspan(campoNombre, 2);
         formulario.setWidthFull();
+        Button btnGuardar = new Button("Guardar contacto");
+        Button btnLimpiar = new Button("Limpiar");
+        btnGuardar.addClickListener(e -> guardar());
+        btnLimpiar.addClickListener(e -> limpiar());
+        HorizontalLayout botones = new HorizontalLayout(btnGuardar, btnLimpiar);
         FlexLayout cuadricula = new FlexLayout();
         cuadricula.setFlexWrap(FlexLayout.FlexWrap.WRAP);
         cuadricula.setWidthFull();
@@ -54,7 +67,8 @@ public class ContactosView extends VerticalLayout {
         VerticalLayout contenido = new VerticalLayout(
                 titulo,
                 descripcion,
-                formulario,   
+                formulario,
+                botones,     
                 subtitulo,
                 cuadricula
         );
@@ -64,10 +78,9 @@ public class ContactosView extends VerticalLayout {
         add(contenido, footer);
         expand(contenido);
     }
-    private void configurarBinder(TextField campoNombre, EmailField campoEmail, NumberField campoTelefono) 
-    {
+    private void configurarBinder(TextField campoNombre, EmailField campoEmail, NumberField campoTelefono) {
         binder.forField(campoNombre)
-                .asRequired("El nombre no puede estar vacio") // VALIDACIÓN
+                .asRequired("El nombre no puede estar vacio")
                 .bind(Contacto::getNombre, Contacto::setNombre);
         binder.forField(campoEmail)
                 .bind(Contacto::getEmail, Contacto::setEmail);
@@ -78,5 +91,19 @@ public class ContactosView extends VerticalLayout {
                         t -> t == null || t.isEmpty() ? null : Double.valueOf(t)
                 )
                 .bind(Contacto::getTelefono, Contacto::setTelefono);
+    }
+    private void guardar() {
+        Contacto contacto = new Contacto();
+        try {
+            binder.writeBean(contacto); 
+            servicio.guardar(contacto); 
+            Notification.show("Guardado: " + contacto.getNombre());
+            limpiar();
+        } catch (ValidationException e) {
+          
+        }
+    }
+    private void limpiar() {
+        binder.readBean(new Contacto());
     }
 }
