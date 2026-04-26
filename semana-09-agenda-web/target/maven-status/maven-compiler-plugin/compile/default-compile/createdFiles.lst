@@ -1,0 +1,5 @@
+com\organizacion\app\ui\TarjetaContacto.class
+com\organizacion\app\views\InicioView.class
+com\organizacion\app\Application.class
+com\organizacion\app\views\ContactosView.class
+com\organizacion\app\ui\MainLayout.class
