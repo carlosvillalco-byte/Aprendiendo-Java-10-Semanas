@@ -14,5 +14,6 @@ Repositorio del curso Java.
 | 6 | Java Moderno + Testing con JUnit 5 | semana-06-agenda-modernizada/ |
 | 7 | VAADIN- 1RA PARTE| semana-07-agenda-web/ |
 | 8 | VAADIN- Estructura y Componentes Visuales| semana-08-agenda-web/ |
+| 9 | VAADIN- Formularios y Persistencia| semana-09-agenda-web/ |
 ## Autor
 [Carlos Ailton Villca Alcocer]
