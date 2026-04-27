@@ -1,18 +1,10 @@
-package com.organizacion.app.views;
+package com.organizacion.agenda.views;
 
-import com.organizacion.app.modelo.Contacto;
-import com.organizacion.app.service.ContactoService;
-import com.organizacion.app.ui.MainLayout;
-import com.organizacion.app.ui.TarjetaContacto;
+import com.organizacion.agenda.modelo.Contacto;
+import com.organizacion.agenda.service.ContactoService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.formlayout.FormLayout;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.H3;
-import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
@@ -23,29 +15,24 @@ import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.Route;
 
 @Route(value = "contactos", layout = MainLayout.class)
-public class ContactosView extends VerticalLayout
- {
+public class ContactosView extends VerticalLayout {
+
     private final ContactoService servicio;
+    private TextField campoNombre = new TextField("Nombre completo");
+    private EmailField campoEmail = new EmailField("Correo electronico");
+    private NumberField campoTelefono = new NumberField("Telefono");
 
     private Binder<Contacto> binder = new Binder<>(Contacto.class);
-    public ContactosView(ContactoService servicio) {
+    public ContactosView(ContactoService servicio) 
+    {
         this.servicio = servicio;
-
-        setSizeFull();
-        setPadding(true);
-        H2 titulo = new H2("Contactos");
-        Paragraph descripcion = new Paragraph("Gestiona todos tus contactos en un solo lugar");
-        H3 subtitulo = new H3("Mis Contactos");
-        TextField campoNombre = new TextField("Nombre completo");
-        EmailField campoEmail = new EmailField("Correo electronico");
-        NumberField campoTelefono = new NumberField("Telefono");
         campoNombre.setPlaceholder("Ej: Ana Quispe");
         campoEmail.setPlaceholder("Ej: ana@correo.com");
         campoTelefono.setPlaceholder("Ej: 71234567");
         campoNombre.setWidthFull();
         campoEmail.setWidthFull();
         campoTelefono.setWidthFull();
-        configurarBinder(campoNombre, campoEmail, campoTelefono);
+        configurarBinder();
         FormLayout formulario = new FormLayout();
         formulario.add(campoNombre, campoEmail, campoTelefono);
         formulario.setColspan(campoNombre, 2);
@@ -55,52 +42,37 @@ public class ContactosView extends VerticalLayout
         btnGuardar.addClickListener(e -> guardar());
         btnLimpiar.addClickListener(e -> limpiar());
         HorizontalLayout botones = new HorizontalLayout(btnGuardar, btnLimpiar);
-        FlexLayout cuadricula = new FlexLayout();
-        cuadricula.setFlexWrap(FlexLayout.FlexWrap.WRAP);
-        cuadricula.setWidthFull();
-        cuadricula.add(
-            new TarjetaContacto("Ana Martinez","71234567","ana@email.com"),
-            new TarjetaContacto("Carlos Quispe","78901234","carlos@email.com"),
-            new TarjetaContacto("Lucia Flores","69876543","lucia@email.com"),
-            new TarjetaContacto("Roberto Vargas","72345678","roberto@email.com")
-        );
-        VerticalLayout contenido = new VerticalLayout(
-                titulo,
-                descripcion,
-                formulario,
-                botones,     
-                subtitulo,
-                cuadricula
-        );
-        contenido.setPadding(false);
-        Div footer = new Div(new Span("Agenda de Contactos v1.0"));
-        footer.setWidthFull();
-        add(contenido, footer);
-        expand(contenido);
+
+        add(formulario, botones);
     }
-    private void configurarBinder(TextField campoNombre, EmailField campoEmail, NumberField campoTelefono) {
+    private void configurarBinder() 
+    {
         binder.forField(campoNombre)
                 .asRequired("El nombre no puede estar vacio")
                 .bind(Contacto::getNombre, Contacto::setNombre);
+
         binder.forField(campoEmail)
                 .bind(Contacto::getEmail, Contacto::setEmail);
+
         binder.forField(campoTelefono)
-                .withConverter
-                (
+                .asRequired("El telefono es obligatorio")
+                .withConverter(
                         v -> v == null ? "" : String.valueOf(v.intValue()),
                         t -> t == null || t.isEmpty() ? null : Double.valueOf(t)
                 )
                 .bind(Contacto::getTelefono, Contacto::setTelefono);
     }
-    private void guardar() {
+    private void guardar() 
+    {
         Contacto contacto = new Contacto();
-        try {
-            binder.writeBean(contacto); 
-            servicio.guardar(contacto); 
+        try 
+        {
+            binder.writeBean(contacto);
+            servicio.guardar(contacto);
             Notification.show("Guardado: " + contacto.getNombre());
             limpiar();
         } catch (ValidationException e) {
-          
+            // Binder muestra errores automáticamente
         }
     }
     private void limpiar() {

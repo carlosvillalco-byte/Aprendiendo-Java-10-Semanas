@@ -15,11 +15,11 @@ public class ContactoService {
         this.manejador = new ManejadorJSON(ARCHIVO);
     }
     public List<Contacto> obtenerTodos()
-    {
+     {
         return manejador.cargar();
     }
-    public List<Contacto> buscarPorNombre(String texto) 
-    {
+    public List<Contacto> buscarPorNombre(String texto)
+     {
         String filtro = texto.toLowerCase();
         return manejador.cargar().stream()
                 .filter(c -> c.getNombre().toLowerCase().contains(filtro))
