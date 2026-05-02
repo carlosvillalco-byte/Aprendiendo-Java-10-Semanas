@@ -1,0 +1,4 @@
+com\organizacion\agenda\modelo\Contacto.class
+com\organizacion\agenda\service\ManejadorJSON.class
+com\organizacion\agenda\service\ManejadorJSON$1.class
+com\organizacion\agenda\views\MainLayout.class

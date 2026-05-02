@@ -1,0 +1,17 @@
+{
+  "frontendFolder": "C:/Users/hp/Documents/CARLOS VILLCA FNI/LAB PROG 3/Aprendiendo-Java-10-Semanas/semana-10-agenda-web/./frontend",
+  "themeFolder": "themes",
+  "themeResourceFolder": "C:/Users/hp/Documents/CARLOS VILLCA FNI/LAB PROG 3/Aprendiendo-Java-10-Semanas/semana-10-agenda-web/./frontend/generated/jar-resources",
+  "staticOutput": "C:/Users/hp/Documents/CARLOS VILLCA FNI/LAB PROG 3/Aprendiendo-Java-10-Semanas/semana-10-agenda-web/target/classes/META-INF/VAADIN/webapp/VAADIN/static",
+  "generatedFolder": "generated",
+  "statsOutput": "C:\\Users\\hp\\Documents\\CARLOS VILLCA FNI\\LAB PROG 3\\Aprendiendo-Java-10-Semanas\\semana-10-agenda-web\\target\\classes\\META-INF\\VAADIN\\config",
+  "frontendBundleOutput": "C:\\Users\\hp\\Documents\\CARLOS VILLCA FNI\\LAB PROG 3\\Aprendiendo-Java-10-Semanas\\semana-10-agenda-web\\target\\classes\\META-INF\\VAADIN\\webapp",
+  "devBundleOutput": "C:/Users/hp/Documents/CARLOS VILLCA FNI/LAB PROG 3/Aprendiendo-Java-10-Semanas/semana-10-agenda-web/target/dev-bundle/webapp",
+  "devBundleStatsOutput": "C:/Users/hp/Documents/CARLOS VILLCA FNI/LAB PROG 3/Aprendiendo-Java-10-Semanas/semana-10-agenda-web/target/dev-bundle/config",
+  "jarResourcesFolder": "C:/Users/hp/Documents/CARLOS VILLCA FNI/LAB PROG 3/Aprendiendo-Java-10-Semanas/semana-10-agenda-web/./frontend/generated/jar-resources",
+  "themeName": "",
+  "clientServiceWorkerSource": "C:\\Users\\hp\\Documents\\CARLOS VILLCA FNI\\LAB PROG 3\\Aprendiendo-Java-10-Semanas\\semana-10-agenda-web\\target\\sw.ts",
+  "pwaEnabled": false,
+  "offlineEnabled": false,
+  "offlinePath": "'offline.html'"
+}
