@@ -8,15 +8,56 @@ import com.vaadin.flow.router.RouterLink;
 
 public class MainLayout extends AppLayout {
 
-    public MainLayout()
-     {
-        H2 titulo = new H2("Agenda de Contactos");
-        MenuBar menu = new MenuBar();
-        menu.addItem(new RouterLink("Inicio", InicioView.class));
-        menu.addItem(new RouterLink("Contactos", ContactosView.class));
-        HorizontalLayout barra = new HorizontalLayout(titulo, menu);
+    public MainLayout() {
+
+        H2 titulo =
+                new H2("Agenda de Contactos");
+
+        MenuBar menu =
+                new MenuBar();
+
+        // LINK INICIO
+
+        RouterLink linkInicio =
+                new RouterLink(
+                        "Inicio",
+                        InicioView.class
+                );
+
+        // LINK CONTACTOS
+
+        RouterLink linkContactos =
+                new RouterLink(
+                        "Contactos",
+                        ContactosView.class
+                );
+
+        // LINK EVENTOS
+
+        RouterLink linkEventos =
+                new RouterLink(
+                        "Eventos",
+                        EventosView.class
+                );
+
+        // AGREGAR AL MENU
+
+        menu.addItem(linkInicio);
+
+        menu.addItem(linkContactos);
+
+        menu.addItem(linkEventos);
+
+        HorizontalLayout barra =
+                new HorizontalLayout(
+                        titulo,
+                        menu
+                );
+
         barra.setWidthFull();
+
         barra.expand(titulo);
+
         addToNavbar(barra);
     }
 }
