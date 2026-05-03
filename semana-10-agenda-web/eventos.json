@@ -1,1 +1,17 @@
-{}
+[
+  {
+    "titulo": "Reunion con Carlos",
+    "fecha": "2026-05-13",
+    "descripcion": "Exposición del Proyecto"
+  },
+  {
+    "titulo": "Clases de Programación 3",
+    "fecha": "2026-06-16",
+    "descripcion": "Con los estudiantes de SIS2330"
+  },
+  {
+    "titulo": "Examen de Mat 1207",
+    "fecha": "2026-06-12",
+    "descripcion": "Ecuaciones Diferenciales Homogeneas"
+  }
+]

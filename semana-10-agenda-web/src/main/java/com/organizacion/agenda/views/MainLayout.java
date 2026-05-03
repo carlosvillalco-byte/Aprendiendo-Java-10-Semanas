@@ -10,54 +10,23 @@ public class MainLayout extends AppLayout {
 
     public MainLayout() {
 
-        H2 titulo =
-                new H2("Agenda de Contactos");
+        H2 titulo =new H2("Agenda de Contactos");
 
-        MenuBar menu =
-                new MenuBar();
+        MenuBar menu =new MenuBar();
 
-        // LINK INICIO
+        RouterLink linkInicio = new RouterLink( "Inicio", InicioView.class);
 
-        RouterLink linkInicio =
-                new RouterLink(
-                        "Inicio",
-                        InicioView.class
-                );
+        RouterLink linkContactos = new RouterLink( "Contactos", ContactosView.class);
 
-        // LINK CONTACTOS
-
-        RouterLink linkContactos =
-                new RouterLink(
-                        "Contactos",
-                        ContactosView.class
-                );
-
-        // LINK EVENTOS
-
-        RouterLink linkEventos =
-                new RouterLink(
-                        "Eventos",
-                        EventosView.class
-                );
-
-        // AGREGAR AL MENU
+        RouterLink linkEventos =new RouterLink("Eventos",EventosView.class);
 
         menu.addItem(linkInicio);
-
         menu.addItem(linkContactos);
-
         menu.addItem(linkEventos);
-
-        HorizontalLayout barra =
-                new HorizontalLayout(
-                        titulo,
-                        menu
-                );
+        HorizontalLayout barra =new HorizontalLayout(titulo, menu);
 
         barra.setWidthFull();
-
         barra.expand(titulo);
-
         addToNavbar(barra);
     }
 }

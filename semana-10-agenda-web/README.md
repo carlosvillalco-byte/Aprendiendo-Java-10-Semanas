@@ -1,151 +1,181 @@
-#  Agenda Web con Vaadin – Semana 9
+# Semana 10 — Agenda Web Completa con Vaadin
 
-## 1. Descripción del proyecto
+## 1.-Descripción del proyecto
 
-Este proyecto es una aplicación web desarrollada con Vaadin y Spring Boot que permite gestionar contactos mediante un formulario. El usuario puede ingresar nombre, correo electrónico y teléfono, los cuales son validados antes de guardarse. La información se persiste en un archivo JSON para mantener los datos incluso después de reiniciar la aplicación.
+Este proyecto es una aplicación web desarrollada con Java, Spring Boot y Vaadin que permite administrar contactos y eventos desde una interfaz gráfica en el navegador.  
+La aplicación implementa CRUD completo para ambas entidades, incluyendo creación, edición, eliminación y visualización mediante Grid<T>.  
+Los datos se almacenan en archivos JSON utilizando una arquitectura en capas basada en Vista → Service → ManejadorJSON → Archivo JSON.  
+Además, el sistema utiliza componentes modernos de Vaadin como Binder, ConfirmDialog y DatePicker para mejorar la experiencia del usuario.
 
 ---
 
-## 2. Diagrama de paquetes (ASCII)
+## 2.-Diagrama ASCII de arquitectura
+
+text
+          ContactosView               EventosView
+                 |                           |
+                 v                           v
+         ContactoService             EventoService       <- @Service
+                 |                           |
+                 v                           v
+            ManejadorJSON              ManejadorJSON
+                 |                           |
+                 v                           v
+          contactos.json              eventos.json
 
 
-ContactosView
-     |
-     v
-ContactoService    <- @Service
-     |
-     v
-ManejadorJSON      <- lee/escribe contactos.json
-     |
-     v
+---
+
+## 3.-Flujo de datos del sistema
+
+La aplicación utiliza una arquitectura en capas para separar responsabilidades y mantener el código organizado.
+
+## Flujo general
+
+text
+Vista → Service → ManejadorJSON → JSON
+
+
+## Explicación
+
+a).-Vista (Views)
+
+Las vistas ContactosView y EventosView representan la interfaz gráfica que utiliza el usuario desde el navegador.
+
+Aquí se encuentran:
+
+- Formularios
+- Grid<T>
+- Botones
+- Binder
+- ConfirmDialog
+- DatePicker
+
+Cuando el usuario guarda o elimina información, la vista llama al servicio correspondiente.
+
+---
+
+b).-Service
+
+Las clases ContactoService y EventoService contienen la lógica de negocio.
+
+Estas clases:
+
+- Obtienen listas
+- Guardan registros
+- Eliminan registros
+- Filtran información
+- Actualizan los JSON
+
+Los servicios están anotados con:
+
+java
+@Service
+
+
+para que Spring Boot pueda inyectarlos automáticamente.
+
+---
+
+ c).-ManejadorJSON
+
+ManejadorJSON.java se encarga de:
+
+- Leer archivos JSON
+- Convertir JSON a objetos Java
+- Guardar listas de objetos en JSON
+
+Utiliza la librería Gson para serializar y deserializar datos.
+
+---
+
+ d).-Archivos JSON
+
+Los datos finalmente se almacenan en:
+
+text
 contactos.json
+eventos.json
 
 
----
-
-## 3. ¿Por qué la vista no toca el JSON directamente?
-
-La vista (*ContactosView) no accede directamente al archivo JSON porque se sigue el principio de **separación de responsabilidades*.
-
-- La vista solo maneja la interfaz (formularios, botones, eventos).
-- El servicio (*ContactoService*) contiene la lógica de negocio.
-- El manejador (*ManejadorJSON*) se encarga de la persistencia.
-
-### Ventajas:
-- Código más organizado y mantenible  
-- Fácil de modificar (por ejemplo, cambiar JSON por base de datos)  
-- Evita acoplamiento entre interfaz y almacenamiento  
-
-👉 En resumen: *la vista no debe saber cómo se guardan los datos, solo que se guardan.*
+La persistencia permite que la información sobreviva incluso después de cerrar la aplicación.
 
 ---
 
-## 4. Cómo compilar y ejecutar
 
-Requisitos:
-- Java 17 o superior  
-- Maven  
+## 4.-Cómo ejecutar el proyecto
 
-Ejecutar en la raíz del proyecto:
+ a).-Abrir terminal en la carpeta del proyecto
+
+bash
+cd semana-10-agenda-web
 
 
+ b).-Ejecutar Spring Boot
+
+bash
 mvn spring-boot:run
 
 
-Luego abrir en el navegador:
+ c).-Abrir el navegador
 
-
+text
 http://localhost:8080
 
 
 ---
 
-## 5. Ejemplo del JSON generado
+## 5.-Capturas de pantalla
 
-Después de agregar un contacto, el archivo contactos.json tendrá esta estructura:
+ Vista Contactos
+
+![Vista Contactos](capturas/Contactos.png)
+
+
+---
+
+Vista Eventos
+
+
+![Vista Eventos](capturas/Eventos.png)
+
+---
+
+## 6.-Ejemplo de 
+Contactos.json
 
 json
 [
   {
     "nombre": "Carlos Mamani",
     "email": "carlos@correo.com",
-    "telefono": "79876543"
+    "telefono": "77777777"
+  },
+  {
+    "nombre": "Ana Quispe",
+    "email": "ana@correo.com",
+    "telefono": "71234567"
   }
 ]
 
 
-# 📘 Agenda Web con Vaadin – Semana 9
-
-## 1. Descripción del proyecto
-
-Este proyecto es una aplicación web desarrollada con Vaadin y Spring Boot que permite gestionar contactos mediante un formulario. El usuario puede ingresar nombre, correo electrónico y teléfono, los cuales son validados antes de guardarse. La información se persiste en un archivo JSON para mantener los datos incluso después de reiniciar la aplicación.
-
 ---
 
-## 2. Diagrama de paquetes (ASCII)
-
-
-ContactosView
-     |
-     v
-ContactoService    <- @Service
-     |
-     v
-ManejadorJSON      <- lee/escribe contactos.json
-     |
-     v
-contactos.json
-
-
----
-
-## 3. ¿Por qué la vista no toca el JSON directamente?
-
-La vista (ContactosView) no accede directamente al archivo JSON porque se sigue el principio de separación de responsabilidades*.
-
-- La vista solo maneja la interfaz (formularios, botones, eventos).
-- El servicio (*ContactoService*) contiene la lógica de negocio.
-- El manejador (*ManejadorJSON*) se encarga de la persistencia.
-
-### Ventajas:
-- Código más organizado y mantenible  
-- Fácil de modificar (por ejemplo, cambiar JSON por base de datos)  
-- Evita acoplamiento entre interfaz y almacenamiento  
-
-
----
-
-## 4. Cómo compilar y ejecutar
-
-Requisitos:
-- Java 17 o superior  
-- Maven  
-
-Ejecutar en la raíz del proyecto:
-
-
-mvn spring-boot:run
-
-
-Luego abrir en el navegador:
-
-
-http://localhost:8080
-
-
----
-
-## 5. Ejemplo del JSON generado
-
-Después de agregar un contacto, el archivo contactos.json tendrá esta estructura:
+Eventos.json
 
 json
 [
   {
-    "nombre": "Carlos Mamani",
-    "email": "carlos@correo.com",
-    "telefono": "79876543"
+    "titulo": "Reunion con equipo",
+    "fecha": "2025-06-15",
+    "descripcion": "Revision del proyecto final"
+  },
+  {
+    "titulo": "Exposicion final",
+    "fecha": "2025-06-20",
+    "descripcion": "Presentacion del sistema"
   }
 ]
 
 
+---

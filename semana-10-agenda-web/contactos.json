@@ -5,11 +5,6 @@
     "email": "carlos.villcalcocer@gmail.com"
   },
   {
-    "nombre": "Maria Quispe Calle",
-    "telefono": "72313478",
-    "email": "maria.quispe@gmail.com"
-  },
-  {
     "nombre": "Jose Mamani Flores",
     "telefono": "71243567",
     "email": "jose.flores@gmail.com"
@@ -18,5 +13,15 @@
     "nombre": "Mario Condori Callejas",
     "telefono": "72345690",
     "email": "mario.condori@gmail.com"
+  },
+  {
+    "nombre": "Gadiel Flores Calle",
+    "telefono": "72345980",
+    "email": "gadiel.flores@gmail.com"
+  },
+  {
+    "nombre": "Itzel Condori Villca",
+    "telefono": "71231298",
+    "email": "itzel.condori@gmail.com"
   }
 ]

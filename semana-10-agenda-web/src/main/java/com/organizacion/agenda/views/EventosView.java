@@ -2,7 +2,6 @@ package com.organizacion.agenda.views;
 
 import com.organizacion.agenda.modelo.Evento;
 import com.organizacion.agenda.service.EventoService;
-
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.datepicker.DatePicker;
@@ -22,20 +21,15 @@ public class EventosView extends VerticalLayout {
 
     private final EventoService servicio;
 
-    private TextField campoTitulo =
-            new TextField("Titulo");
+    private TextField campoTitulo = new TextField("Titulo");
 
-    private DatePicker campoFecha =
-            new DatePicker("Fecha");
+    private DatePicker campoFecha = new DatePicker("Fecha");
 
-    private TextField campoDescripcion =
-            new TextField("Descripcion");
+    private TextField campoDescripcion = new TextField("Descripcion");
 
-    private Binder<Evento> binder =
-            new Binder<>(Evento.class);
+    private Binder<Evento> binder = new Binder<>(Evento.class);
 
-    private Grid<Evento> grid =
-            new Grid<>(Evento.class, false);
+    private Grid<Evento> grid = new Grid<>(Evento.class, false);
 
     private Evento eventoEditando = null;
 
@@ -49,35 +43,24 @@ public class EventosView extends VerticalLayout {
 
         FormLayout formulario = new FormLayout();
 
-        formulario.add(
-                campoTitulo,
-                campoFecha,
-                campoDescripcion
-        );
+        formulario.add(campoTitulo, campoFecha, campoDescripcion);
 
         formulario.setColspan(campoDescripcion, 2);
 
         formulario.setWidthFull();
 
-        Button btnGuardar =
-                new Button("Guardar", e -> guardar());
+        Button btnGuardar = new Button("Guardar", e -> guardar());
 
-        Button btnLimpiar =
-                new Button("Limpiar", e -> limpiar());
+        Button btnLimpiar = new Button("Limpiar", e -> limpiar());
 
-        Button btnEliminar =
-                new Button("Eliminar", e -> eliminar());
+        Button btnEliminar = new Button("Eliminar", e -> eliminar());
 
         btnEliminar.getThemeNames().add("error");
 
         add(
                 new H2("Eventos"),
                 formulario,
-                new HorizontalLayout(
-                        btnGuardar,
-                        btnLimpiar,
-                        btnEliminar
-                ),
+                new HorizontalLayout(btnGuardar, btnLimpiar, btnEliminar),
                 grid
         );
 
@@ -88,16 +71,14 @@ public class EventosView extends VerticalLayout {
 
     private void configurarCampos() {
 
-        campoTitulo.setPlaceholder(
-                "Ej: Reunion con Ana"
-        );
+        campoTitulo.setPlaceholder("Ej: Reunion con Ana");
 
-        campoDescripcion.setPlaceholder(
-                "Ej: Presentacion del proyecto"
-        );
+        campoDescripcion.setPlaceholder("Ej: Presentacion del proyecto");
 
         campoTitulo.setWidthFull();
+
         campoFecha.setWidthFull();
+
         campoDescripcion.setWidthFull();
     }
 
@@ -105,32 +86,20 @@ public class EventosView extends VerticalLayout {
 
         binder.forField(campoTitulo)
                 .asRequired("El titulo no puede estar vacio")
-                .bind(
-                        Evento::getTitulo,
-                        Evento::setTitulo
-                );
+                .bind(Evento::getTitulo, Evento::setTitulo);
 
         binder.forField(campoFecha)
                 .asRequired("La fecha es obligatoria")
                 .withConverter(
                         f -> f == null ? "" : f.toString(),
-                        t -> (
-                                t == null ||
-                                        t.isEmpty()
-                        )
+                        t -> (t == null || t.isEmpty())
                                 ? null
                                 : java.time.LocalDate.parse(t)
                 )
-                .bind(
-                        Evento::getFecha,
-                        Evento::setFecha
-                );
+                .bind(Evento::getFecha, Evento::setFecha);
 
         binder.forField(campoDescripcion)
-                .bind(
-                        Evento::getDescripcion,
-                        Evento::setDescripcion
-                );
+                .bind(Evento::getDescripcion, Evento::setDescripcion);
     }
 
     private void configurarGrid() {
@@ -153,26 +122,24 @@ public class EventosView extends VerticalLayout {
 
         grid.setHeight("260px");
 
-        grid.asSingleSelect()
-                .addValueChangeListener(e -> {
+        grid.asSingleSelect().addValueChangeListener(e -> {
 
-                    Evento ev = e.getValue();
+            Evento ev = e.getValue();
 
-                    if (ev != null) {
+            if (ev != null) {
 
-                        binder.readBean(ev);
+                binder.readBean(ev);
 
-                        eventoEditando = ev;
-                    }
-                });
+                eventoEditando = ev;
+            }
+        });
     }
 
     private void guardar() {
 
-        Evento evento =
-                eventoEditando != null
-                        ? eventoEditando
-                        : new Evento();
+        Evento evento = eventoEditando != null
+                ? eventoEditando
+                : new Evento();
 
         try {
 
@@ -180,10 +147,7 @@ public class EventosView extends VerticalLayout {
 
             servicio.guardar(evento);
 
-            Notification.show(
-                    "Guardado: "
-                            + evento.getTitulo()
-            );
+            Notification.show("Guardado: " + evento.getTitulo());
 
             limpiar();
 
@@ -198,29 +162,20 @@ public class EventosView extends VerticalLayout {
 
         if (eventoEditando == null) {
 
-            Notification.show(
-                    "Selecciona un evento"
-            );
+            Notification.show("Selecciona un evento");
 
             return;
         }
 
-        ConfirmDialog dialogo =
-                new ConfirmDialog();
+        ConfirmDialog dialogo = new ConfirmDialog();
 
         dialogo.setHeader("Eliminar evento");
 
-        dialogo.setText(
-                "Eliminar "
-                        + eventoEditando.getTitulo()
-                        + " ?"
-        );
+        dialogo.setText("Eliminar " + eventoEditando.getTitulo() + "?");
 
         dialogo.setConfirmText("Eliminar");
 
-        dialogo.setConfirmButtonTheme(
-                "error primary"
-        );
+        dialogo.setConfirmButtonTheme("error primary");
 
         dialogo.setCancelable(true);
 
@@ -232,9 +187,7 @@ public class EventosView extends VerticalLayout {
 
             limpiar();
 
-            Notification.show(
-                    "Evento eliminado"
-            );
+            Notification.show("Evento eliminado");
         });
 
         dialogo.open();
