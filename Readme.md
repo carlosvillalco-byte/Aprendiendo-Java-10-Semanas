@@ -15,5 +15,6 @@ Repositorio del curso Java.
 | 7 | VAADIN- 1RA PARTE| semana-07-agenda-web/ |
 | 8 | VAADIN- Estructura y Componentes Visuales| semana-08-agenda-web/ |
 | 9 | VAADIN- Formularios y Persistencia| semana-09-agenda-web/ |
+| 10 | VAADIN- La Agenda Completa| semana-10-agenda-web/ |
 ## Autor
 [Carlos Ailton Villca Alcocer]
