@@ -1,8 +1,11 @@
 # Sistema de Gestión de Estudiantes
 
+
+## 1.-Descripción
+
 Este programa es una aplicación desarrollada en Java que permite gestionar estudiantes mediante su carnet, nombre, carrera y promedio. El sistema permite registrar, buscar, actualizar y eliminar estudiantes, además de mostrar rankings, top 5, estadísticas generales y el historial de operaciones realizadas. El objetivo del proyecto es demostrar el uso de diferentes estructuras de datos de Java para resolver distintos problemas dentro de un mismo sistema.
 
-## Tabla comparativa de estructuras utilizadas
+## 2.-Tabla comparativa de estructuras utilizadas
 
 | Colección | Rol en el sistema | Justificación |
 |-----------|------------------|---------------|
@@ -10,7 +13,7 @@ Este programa es una aplicación desarrollada en Java que permite gestionar estu
 | **TreeSet<Estudiante>** | Mantiene el **ranking automático por promedio** | Los estudiantes se mantienen ordenados automáticamente según su promedio |
 | **ArrayList<String>** | Guarda el **historial de operaciones** del sistema | Permite registrar las acciones en el orden en que ocurren |
 
-## Cómo compilar el proyecto
+## 3.-Cómo compilar el proyecto
 
 Ubicarse en la carpeta raíz del proyecto y ejecutar el siguiente comando:
 
@@ -24,7 +27,7 @@ Después de compilar el proyecto ejecutar el siguiente comando:
 
 java Main
 
-## Ejemplo de salida del programa
+## 4.-Ejemplo de salida del programa
 
 === SISTEMA DE ESTUDIANTES ===
 1. Agregar estudiante
