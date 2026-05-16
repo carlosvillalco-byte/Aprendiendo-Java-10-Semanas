@@ -1,13 +1,16 @@
 # Gestión de Vehículos – POO
 
+## 1.-Descripción
+
 Este proyecto es un sistema en consola que permite gestionar una flota de vehículos
 de distintos tipos. El objetivo es demostrar el uso de herencia, clases abstractas,
 polimorfismo e interfaces en Java, aplicados en un caso práctico.
 
 ---
 
-## Diagrama de clases
+## 2.-Diagrama de clases
 
+```
        [Vehiculo] (abstract)
            |
    +-------+--------+
@@ -20,9 +23,9 @@ polimorfismo e interfaces en Java, aplicados en un caso práctico.
             |
       <<Electrico>> (interface)
 
----
+```
 
-## Decisiones de diseño
+## 3.-Decisiones de diseño
 
 La clase Vehiculo se definió como abstracta porque representa un concepto general
 y no debe instanciarse directamente. Cada tipo de vehículo implementa su propio
@@ -34,7 +37,7 @@ necesidad de una jerarquía adicional.
 
 ---
 
-## Cómo compilar y ejecutar
+## 4.-Cómo compilar y ejecutar
 
 Desde la carpeta semana-03-vehiculos-poo:
 
@@ -43,7 +46,7 @@ java Main
 
 ---
 
-## Ejemplo de salida
+## 5.-Ejemplo de salida
 
 == acelerar() en toda la flota ==
 Toyota (auto) acelera.
