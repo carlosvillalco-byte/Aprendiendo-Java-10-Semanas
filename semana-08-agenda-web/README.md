@@ -1,4 +1,4 @@
-#  Agenda de Contactos
+#  Agenda de Contactos - Semana 8
 
 ## 1.- Descripción
 Esta aplicación web permite gestionar una agenda de contactos de manera sencilla y organizada. El usuario puede visualizar contactos en forma de tarjetas y navegar entre diferentes vistas. Está desarrollada utilizando Vaadin y Spring Boot para ofrecer una interfaz moderna e interactiva.
