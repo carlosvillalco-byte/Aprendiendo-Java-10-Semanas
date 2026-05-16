@@ -71,26 +71,10 @@ mvn exec:java "-Dexec.mainClass=Main"
 
 ## 5. Capturas de pantalla del programa
 
-Menú principal:
-
-=== AGENDA DE CONTACTOS ===
-1. Agregar contacto
-2. Listar todos
-3. Buscar contacto
-4. Eliminar contacto
-5. Estadisticas
-6. Salir
-
-Validación de teléfono:
-
-Telefono: 23  
-Error: Dato invalido en 'telefono': debe tener entre 7 y 8 digitos
-
-Lista de contactos:
-
-=== TODOS LOS CONTACTOS ===
-
-ID    | Nombre        | Telefono  | Email
------------------------------------------
-C001  | Juan Perez    | 72345678  | juan@gmail.com
-C002  | Maria Lopez   | 79876543  | maria@hotmail.com
+![capturas](./capturas/Ejecucion1.png)
+---
+![capturas](./capturas/Ejecucion2.png)
+---
+![capturas](./capturas/Ejecucion3.png)
+---
+![capturas](./capturas/Ejecucion4.png)
