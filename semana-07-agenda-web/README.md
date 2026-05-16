@@ -53,5 +53,8 @@ http://localhost:8080
 
 ---
 
+## 6 Capturas
 
+![capturas](capturas/Ejecucion1.png)
+![capturas](capturas/Ejecucion2.png)
 
