@@ -1,4 +1,4 @@
-# Agenda de Contactos
+# Agenda de Contactos -Semana 6
 
 ## 1. Descripción del proyecto
 Proyecto Java que implementa una agenda de contactos con persistencia en JSON. Permite agregar, buscar, listar y filtrar contactos por categoría, validando los datos ingresados. Incluye pruebas unitarias con JUnit para asegurar la correcta funcionalidad.
