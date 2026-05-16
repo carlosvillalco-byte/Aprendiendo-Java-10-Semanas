@@ -10,8 +10,7 @@ Además, el sistema utiliza componentes modernos de Vaadin como Binder, ConfirmD
 ---
 
 ## 2.-Diagrama ASCII de arquitectura
-
-text
+````
           ContactosView               EventosView
                  |                           |
                  v                           v
@@ -23,7 +22,7 @@ text
                  v                           v
           contactos.json              eventos.json
 
-
+````
 ---
 
 ## 3.-Flujo de datos del sistema
